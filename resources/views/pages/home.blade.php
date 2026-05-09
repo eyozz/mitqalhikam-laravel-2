@@ -121,9 +121,9 @@
     <header
         class="fixed top-0 w-full flex justify-between items-center px-gutter py-4 bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 dark:border-outline/20 shadow-sm shadow-primary/5">
         <div class="flex items-center gap-sm">
-            <img src="{{ asset('images/logo-al-hikam.svg') }}" alt="Logo STTD Al Hikam" class="w-12 h-12 object-cover rounded-full" />
+            <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" />
             <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
-                MITQ AL-HIKAM
+                {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
             </div>
         </div>
         <nav class="hidden md:flex items-center space-x-md">
@@ -159,15 +159,12 @@
             <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
                 <div class="z-10 order-2 lg:order-1">
                     <span
-                        class="inline-block bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-caps text-label-caps mb-md">PENDAFTARAN
-                        TAHUN AJARAN 2025/2026 DIBUKA</span>
+                        class="inline-block bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-caps text-label-caps mb-md">{{ $cmsContent->get('home.hero.badge', 'PENDAFTARAN TAHUN AJARAN 2025/2026 DIBUKA') }}</span>
                     <h1 class="font-h1 text-h1 text-primary mb-md leading-tight">
-                        Mencetak Generasi ‘Ulama yang Berpegang Teguh dengan <span class="text-secondary italic">Al
-                            Qur’an dan As Sunnah</span>
+                        {{ $cmsContent->get('home.hero.title', 'Mencetak Generasi Ulama yang Berpegang Teguh dengan Al-Quran dan As-Sunnah') }}
                     </h1>
                     <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-xl">
-                        Sekolah Tahfizh Tingkat Dasar dengan konsep Halaqah Kecil (1 Guru : 7 Santri) demi mewujudkan
-                        generasi Qur'ani yang Rabbani.
+                        {{ $cmsContent->get('home.hero.subtitle', 'MITQ Al-Hikam menghadirkan pembelajaran tahfizh, adab, dan ilmu dasar dalam suasana halaqah yang hangat dan terarah.') }}
                     </p>
                     <div class="flex flex-wrap gap-md">
                         <button
@@ -199,13 +196,10 @@
         <section class="py-xl bg-surface-container-lowest">
             <div class="max-w-container-max mx-auto px-gutter text-center">
                 <div class="max-w-3xl mx-auto">
-                    <h2 class="font-h2 text-h2 text-primary mb-md">Tahun ke-7 Melayani Masyarakat</h2>
+                    <h2 class="font-h2 text-h2 text-primary mb-md">{{ $cmsContent->get('home.about.title', 'Tahun ke-7 Melayani Masyarakat') }}</h2>
                     <div class="w-20 h-1 bg-secondary mx-auto mb-lg"></div>
                     <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                        Sejak berdiri, STTD Al Hikam Surakarta telah berkomitmen penuh dalam memberikan pendidikan
-                        terbaik berbasis Al-Qur'an. Dengan pengalaman melayani umat selama tujuh tahun, kami terus
-                        bertransformasi untuk menghadirkan lingkungan belajar yang kondusif bagi pertumbuhan spiritual
-                        dan intelektual ananda.
+                        {{ $cmsContent->get('home.about.body', 'MITQ Al-Hikam Surakarta berkomitmen memberikan pendidikan terbaik berbasis Al-Quran dengan lingkungan belajar yang kondusif bagi pertumbuhan spiritual dan intelektual santri.') }}
                     </p>
                 </div>
             </div>
@@ -338,8 +332,7 @@
             <div class="max-w-container-max mx-auto px-gutter text-center text-on-primary">
                 <h2 class="font-h2 text-h2 mb-md">Siapkan Masa Depan Qur'ani Ananda</h2>
                 <p class="font-body-lg text-body-lg mb-lg opacity-90 max-w-2xl mx-auto">
-                    Mari bergabung dalam keluarga besar STTD Al Hikam Surakarta. Pendaftaran santri baru sedang
-                    berlangsung.
+                    {{ $cmsContent->get('home.cta.body', 'Mari bergabung dalam keluarga besar MITQ Al-Hikam Surakarta. Pendaftaran santri baru sedang berlangsung.') }}
                 </p>
                 <div class="flex justify-center gap-md">
                     <button
@@ -358,9 +351,8 @@
     <footer
         class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
         <div class="flex flex-col gap-sm">
-            <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">STTD Al Hikam</div>
-            <p class="font-body-md text-body-md text-on-surface-variant">Sekolah Tahfizh Tingkat Dasar yang berfokus
-                pada kualitas hafalan dan penanaman aqidah shohihah.</p>
+            <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MITQ Al-Hikam</div>
+            <p class="font-body-md text-body-md text-on-surface-variant">{{ $cmsSettings['footer_description'] ?? 'Lembaga pendidikan tahfizh dasar yang berfokus pada Al-Quran, adab, dan pembinaan karakter santri.' }}</p>
             <div class="flex gap-sm mt-md">
                 <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
                     href="#">
@@ -378,14 +370,13 @@
         </div>
         <div class="flex flex-col gap-sm">
             <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Peta Situs</a>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Akreditasi</a>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Kegiatan Santri</a>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Galeri</a>
+            @forelse (($footerLinks['quick_links'] ?? collect()) as $footerLink)
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ $footerLink->url }}">{{ $footerLink->label }}</a>
+            @empty
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('home') }}">Beranda</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('program') }}">Program</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('news.index') }}">News</a>
+            @endforelse
         </div>
         <div class="flex flex-col gap-sm">
             <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
@@ -393,7 +384,7 @@
                 href="#">Kebijakan Privasi</a>
             <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
                 href="#">Syarat &amp; Ketentuan</a>
-            <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 STTD Al Hikam Surakarta. All
+            <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 MITQ Al-Hikam Surakarta. All
                 Rights Reserved.</p>
         </div>
     </footer>
@@ -403,7 +394,7 @@
         <span class="material-symbols-outlined" data-icon="chat_bubble" data-weight="fill">chat_bubble</span>
         <span class="font-label-caps text-label-caps hidden group-hover:inline">HUBUNGI PPDB</span>
     </a>
-<a href="{{ config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
 </body>
 
 </html>

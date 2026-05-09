@@ -12,7 +12,7 @@
 <body class="bg-background text-slate-900 font-sans">
     <header class="sticky top-0 z-40 border-b bg-white/90 px-6 py-4 backdrop-blur">
         <div class="mx-auto flex max-w-6xl items-center justify-between">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 font-bold text-primary"><img src="{{ asset('images/logo-al-hikam.svg') }}" class="h-11 w-11 rounded-full" alt="Logo">MITQ AL-HIKAM</a>
+            <a href="{{ route('home') }}" class="flex items-center gap-3 font-bold text-primary"><img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" class="h-11 w-11 rounded-full" alt="Logo">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}</a>
             <a href="{{ route('news.index') }}" class="text-sm font-semibold text-secondary">Kembali ke News</a>
         </div>
     </header>
@@ -21,7 +21,7 @@
             <p class="text-xs font-bold uppercase tracking-[0.12em] text-secondary">{{ $post->category }} / {{ $post->published_at?->translatedFormat('d F Y') }}</p>
             <h1 class="mt-4 font-serif text-4xl leading-tight text-primary md:text-6xl">{{ $post->title }}</h1>
             <p class="mt-5 text-xl leading-8 text-slate-600">{{ $post->excerpt }}</p>
-            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="mt-8 h-[420px] w-full rounded-3xl object-cover shadow-xl">
+            <img src="{{ $post->display_image }}" alt="{{ $post->title }}" class="mt-8 h-[420px] w-full rounded-3xl object-cover shadow-xl">
             <div class="prose prose-lg mt-10 max-w-none prose-headings:font-serif prose-headings:text-primary prose-a:text-secondary">
                 {!! $post->content !!}
             </div>

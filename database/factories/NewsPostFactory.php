@@ -26,6 +26,7 @@ class NewsPostFactory extends Factory
             'image_url' => fake()->imageUrl(1200, 800, 'education'),
             'published_at' => fake()->dateTimeBetween('-2 months', 'now'),
             'is_featured' => false,
+            'status' => 'published',
         ];
     }
 }

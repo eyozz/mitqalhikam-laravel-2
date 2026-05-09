@@ -16,6 +16,7 @@ class NewsController extends Controller
 
         $posts = NewsPost::query()
             ->whereNotNull('published_at')
+            ->where('status', 'published')
             ->when($search !== '', function ($query) use ($search): void {
                 $query->where(function ($query) use ($search): void {
                     $query->where('title', 'like', "%{$search}%")
@@ -29,6 +30,7 @@ class NewsController extends Controller
 
         $featuredPost = NewsPost::query()
             ->where('is_featured', true)
+            ->where('status', 'published')
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->first();
@@ -41,6 +43,7 @@ class NewsController extends Controller
         $relatedPosts = NewsPost::query()
             ->whereKeyNot($post->id)
             ->where('category', $post->category)
+            ->where('status', 'published')
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->limit(3)

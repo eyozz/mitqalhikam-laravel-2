@@ -119,10 +119,10 @@
         <nav
                 class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
                 <div class="flex items-center gap-sm">
-                        <img src="{{ asset('images/logo-al-hikam.svg') }}" alt="Logo STTD Al Hikam"
+                        <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam"
                                 class="w-12 h-12 object-cover rounded-full" />
                         <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
-                                MITQ AL-HIKAM
+                                {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
                         </div>
                 </div>
                 <div class="hidden md:flex items-center gap-md">
@@ -160,11 +160,9 @@
                                 <span
                                         class="inline-block py-1 px-3 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-caps text-[10px] mb-md">PROGRAM
                                         PENDIDIKAN</span>
-                                <h1 class="font-h1 text-h1 text-primary mb-md">Kurikulum Adab &amp; Ilmu Berbasis
-                                        Tahfizh</h1>
+                                <h1 class="font-h1 text-h1 text-primary mb-md">{{ $cmsContent->get('program.hero.title', 'Kurikulum Adab dan Ilmu Berbasis Tahfizh') }}</h1>
                                 <p class="text-body-lg font-body-lg text-on-surface-variant mb-lg max-w-lg">
-                                        Menyeimbangkan hafalan Al-Qur'an dengan pemahaman agama yang mendalam dan
-                                        kecakapan akademik umum untuk mencetak generasi Rabbani.
+                                        {{ $cmsContent->get('program.hero.subtitle', 'Menyeimbangkan hafalan Al-Quran dengan pemahaman agama dan kecakapan akademik umum untuk mencetak generasi Rabbani.') }}
                                 </p>
                                 <div class="flex gap-sm">
                                         <button
@@ -243,7 +241,7 @@
                                 <div class="max-w-xl">
                                         <h2 class="font-h2 text-h2 text-primary">Program Unggulan</h2>
                                         <p class="text-on-surface-variant">Fokus utama pengembangan kompetensi santri
-                                                STTD Al Hikam.</p>
+                                                MITQ Al-Hikam.</p>
                                 </div>
                                 <div class="h-px flex-grow bg-outline-variant/30 mx-md hidden md:block"></div>
                         </div>
@@ -361,7 +359,7 @@
                                         <div
                                                 class="flex-shrink-0 w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-bold text-lg">
                                                 6+</div>
-                                        <p class="text-body-md italic">Target total kelulusan santri STTD Al Hikam
+                                        <p class="text-body-md italic">Target total kelulusan santri MITQ Al-Hikam
                                                 minimal 10 Juz dengan kualitas Itqon.</p>
                                 </div>
                         </div>
@@ -548,7 +546,7 @@
         <footer
                 class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
                 <div class="flex flex-col gap-sm">
-                        <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">STTD Al Hikam</div>
+                        <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MITQ Al-Hikam</div>
                         <p class="font-body-md text-body-md text-on-surface-variant">Sekolah Tahfizh Tingkat Dasar yang
                                 berfokus
                                 pada kualitas hafalan dan penanaman aqidah shohihah.</p>
@@ -570,27 +568,26 @@
                 </div>
                 <div class="flex flex-col gap-sm">
                         <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Peta Situs</a>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Akreditasi</a>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Kegiatan Santri</a>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Galeri</a>
-                </div>
-                <div class="flex flex-col gap-sm">
-                        <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
+            @forelse (($footerLinks['quick_links'] ?? collect()) as $footerLink)
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ $footerLink->url }}">{{ $footerLink->label }}</a>
+            @empty
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('home') }}">Beranda</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('program') }}">Program</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('news.index') }}">News</a>
+            @endforelse
+        </div>
+        <div class="flex flex-col gap-sm">
+            <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
                         <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
                                 href="#">Kebijakan Privasi</a>
                         <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
                                 href="#">Syarat &amp; Ketentuan</a>
-                        <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 STTD Al Hikam
+                        <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 MITQ Al-Hikam
                                 Surakarta. All
                                 Rights Reserved.</p>
                 </div>
         </footer>
-<a href="{{ config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
 </body>
 
 </html>
