@@ -20,8 +20,10 @@ class NewsPost extends Model
         'excerpt',
         'content',
         'image_url',
+        'thumbnail_path',
         'published_at',
         'is_featured',
+        'status',
     ];
 
     protected function casts(): array
@@ -30,5 +32,10 @@ class NewsPost extends Model
             'published_at' => 'datetime',
             'is_featured' => 'boolean',
         ];
+    }
+
+    public function getDisplayImageAttribute(): ?string
+    {
+        return $this->thumbnail_path ?: $this->image_url;
     }
 }
