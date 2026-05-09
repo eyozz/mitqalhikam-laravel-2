@@ -1,0 +1,5 @@
+@extends('admin.layout')
+@section('title', 'Pesan Kontak')
+@section('content')
+    <div class="overflow-hidden rounded-3xl bg-white shadow-sm"><table class="w-full text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500"><tr><th class="p-4">Nama</th><th>Email</th><th>Subjek</th><th>Tanggal</th><th class="text-right pr-4">Aksi</th></tr></thead><tbody class="divide-y">@foreach ($messages as $message)<tr><td class="p-4 font-bold text-primary">{{ $message->name }}</td><td>{{ $message->email }}</td><td>{{ $message->subject }}</td><td>{{ $message->created_at->format('d M Y H:i') }}</td><td class="pr-4 text-right"><a href="{{ route('admin.contacts.show', $message) }}" class="font-bold text-primary">Lihat</a><form method="POST" action="{{ route('admin.contacts.destroy', $message) }}" class="inline" onsubmit="return confirm('Hapus pesan ini?')">@csrf @method('DELETE')<button class="ml-3 font-bold text-red-600">Hapus</button></form></td></tr>@endforeach</tbody></table></div><div class="mt-6">{{ $messages->links() }}</div>
+@endsection
