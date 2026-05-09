@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Berita &amp; Galeri - MITQ AL-HIKAM Surakarta</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#d4d1ca",
+                        "on-primary-fixed": "#002114",
+                        "on-primary-fixed-variant": "#005137",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e7eefe",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#3f4943",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-container": "#fed65b",
+                        "primary": "#004d34",
+                        "on-secondary-container": "#745c00",
+                        "on-tertiary-fixed-variant": "#474741",
+                        "outline-variant": "#bec9c1",
+                        "on-secondary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#c9c6bf",
+                        "tertiary-fixed": "#e5e2db",
+                        "on-secondary-fixed-variant": "#574500",
+                        "tertiary-container": "#5b5a54",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1c1c17",
+                        "inverse-surface": "#2a313d",
+                        "primary-fixed-dim": "#84d7af",
+                        "secondary": "#735c00",
+                        "primary-fixed": "#a0f4ca",
+                        "surface-tint": "#0b6c4b",
+                        "surface-container-highest": "#dce2f3",
+                        "surface-container-high": "#e2e8f8",
+                        "surface": "#f9f9ff",
+                        "primary-container": "#006747",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dce2f3",
+                        "on-surface": "#151c27",
+                        "outline": "#6f7a72",
+                        "secondary-fixed": "#ffe088",
+                        "background": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-dim": "#d3daea",
+                        "secondary-fixed-dim": "#e9c349",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#84d7af",
+                        "on-primary-container": "#8fe2ba",
+                        "on-background": "#151c27",
+                        "tertiary": "#43433d",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h3": ["Newsreader"],
+                        "body-lg": ["Inter"],
+                        "h1": ["Newsreader"],
+                        "h2": ["Newsreader"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "h3": ["28px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "h2": ["36px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 15-15 15-15-15zM0 30l15 15-15 15-15-15zM60 30l15 15-15 15-15-15zM30 60l15 15-15 15-15-15z' fill='%23004d34' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Lightbox styles */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        #lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        #lightbox-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: Inter, sans-serif;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 20px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- Header -->
+    <header
+        class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
+        <div class="flex items-center gap-sm">
+            <img src="../image/logo.jpg" alt="Logo MITQ AL-HIKAM" class="w-12 h-12 object-cover rounded-full" />
+            <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
+                MITQ AL-HIKAM
+            </div>
+        </div>
+        <nav class="hidden md:flex items-center space-x-md">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+                href="beranda.html">Beranda</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+                href="tentang_kami.html">Tentang Kami</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+                href="program.html">Program</a>
+            <a class="font-label-caps text-label-caps text-primary border-b-2 border-secondary pb-1"
+                href="berita.html">Berita</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+                href="hubungi_kami.html">Hubungi Kami</a>
+        </nav>
+        <button
+            class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all">Daftar
+            Sekarang (PPDB)</button>
+    </header>
+
+    <main class="pt-[120px] pb-xl bg-pattern min-h-screen">
+        <section class="max-w-container-max mx-auto px-gutter mb-xl">
+
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-lg">
+                <div class="max-w-2xl">
+                    <span class="font-label-caps text-label-caps text-secondary mb-base inline-block">Update
+                        Terbaru</span>
+                    <h1 class="font-h1 text-h1 text-primary mb-sm">Berita &amp; Galeri</h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant">Menelusuri jejak perjuangan dan
+                        prestasi santri MITQ AL-HIKAM Surakarta dalam meraih keberkahan Al-Qur'an.</p>
+                </div>
+                <div class="flex gap-sm">
+                    <button
+                        class="p-sm rounded-lg border border-outline-variant hover:border-primary text-primary transition-all">
+                        <span class="material-symbols-outlined">filter_list</span>
+                    </button>
+                    <button
+                        class="p-sm rounded-lg border border-outline-variant hover:border-primary text-primary transition-all">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== 6 NEWS CARDS — 3 per row, same size ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+
+                <!-- Card 1 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-primary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/1.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuByuBRijhzedmnB6kO_mBgEfyqEZ_cpqVt72RuHyMqWL1jkxFYxre2eKU7oMIjaBeDrrggq6BD-3CZQZeT81lFqMspx5XIVNMXkxiYqqd3ujY8m3BrmAhcnl_YNrb-QoqnmvudzMJpn8cdRyeDVRPI-54jsAvkw3Co4cslN_n7WBngHjCmc8TTiECGZzkyiQmb759A9IkyRA5jygrWtuhZFI0S3HZcLI6m1G-2DkFRnO9qdcQyByPmMKYy0PyyHprGy9Lr570eYW867'"
+                            alt="Wisuda Tahfiz Angkatan VII" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            17 Juni 2024
+                            <span
+                                class="ml-auto bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-sm py-xs rounded-full">Kegiatan</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">
+                            Semangat Iduladha: Santri Belajar Makna Berbagi dan Kepedulian
+                        </h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">
+                            Santri turut berpartisipasi dalam kegiatan penyembelihan dan pembagian hewan kurban sebagai
+                            bentuk pembelajaran nilai keikhlasan serta kebersamaan.
+                        </p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-secondary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/2.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBJxHWUWJU_LoW496RPaJUllL1UhBgLVDyzymGDYW5cpvWd0M7G8OHVl2jVBbOc-o232_c-9aIGwhUH5xbavByMoDn6GwWbqXkhjNWdzB6cFP9l5JP3yfoDbJUSD8ksIefAe9Aksa-IgNbU11gcJjE5Ee-lRKEMNh1BxBdn9rKHVI6Zb5Bl3pXFdGTTCYZX6vKV6_B7z1tsu8dMIoTRunT16AQpyVRVB1V3qvxUxcDDTttOot0BiAA0jS93rPT6v8hU4g66sm3FG8vy'"
+                            alt="Tasmi Akbar" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">event</span>
+                            10 Juli 2024
+                            <span
+                                class="ml-auto bg-primary/10 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full">Kegiatan</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">Tasmi' Akbar: Gema Al-Qur'an di Bumi
+                            Surakarta</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">Kegiatan
+                            rutin bulanan santri dalam memperdengarkan hafalan sekali duduk dihadapan publik.</p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-primary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/3.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4GYefKztnPTtY2sICBzyALAqs0D1oJvRR6rgZiwdG7NpUlGmu6mNP_ueG3rLSsT4G_tb9I1-EplYI2XDzRFQ0TomkZsCP1PzMBCrUc-wTvme8sjq9l8an2EaDqGTRRJidHgh4NNIMUekrVXErpr3CpCU5muqYWYzMEsyykjF6lQkOAbxGkxAbD2Sy-4coc1jP9c08WPfbvHS1gh4DqLpGERlqDf3K5wjhDeCc7u1jYCzd5w0EjqBrpSBzSZ-8MORjpdqKg8MR6SEe'"
+                            alt="Musabaqoh Hifzhil Quran" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">event</span>
+                            10 Juli 2024
+                            <span
+                                class="ml-auto bg-primary/10 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full">Kegiatan</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">
+                            Mukhayyam Santri: Membangun Ukhuwah dan Jiwa Kepemimpinan
+                        </h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">
+                            Ratusan santri mengikuti kegiatan mukhayyam tahunan yang diisi pembinaan karakter, kerja
+                            sama tim, dan penguatan nilai-nilai Qur'ani.
+                        </p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-secondary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/4.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBm1400c8wErfGH42of1r_AXIDHeXLaVh70lSxk6AJVS61Xp0iRb9t1qY552r5ZWgMAX2wGyrvKnzn8wK6EKHM4b1jV0_Hs1nB_o60xDJWirrRoOrCa6k4wqs7XprnEqoVLv44Huww1tjqzY8k3n49XndqsG_hEcLqRWvTycAH66Kq9jgHyy0T4FKRo1FzqNPEKgaqZVtwv0esqDlYo-lu3iv6KjH6V498qJVsyULMNGa70AWuL0nITXLu-kv8zNg22tFJkKLPbU6AV'"
+                            alt="Rihlah Tawangmangu" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">emoji_events</span>
+                            05 Juli 2024
+                            <span
+                                class="ml-auto bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-sm py-xs rounded-full">Kepramukaan</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">
+                            Latihan Kepemimpinan Santri Putri di Alam Terbuka
+                        </h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">
+                            Kegiatan outbound dan pembinaan karakter dilakukan untuk melatih kemandirian, kedisiplinan,
+                            serta kekompakan santri putri.
+                        </p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-primary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/5.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4GYefKztnPTtY2sICBzyALAqs0D1oJvRR6rgZiwdG7NpUlGmu6mNP_ueG3rLSsT4G_tb9I1-EplYI2XDzRFQ0TomkZsCP1PzMBCrUc-wTvme8sjq9l8an2EaDqGTRRJidHgh4NNIMUekrVXErpr3CpCU5muqYWYzMEsyykjF6lQkOAbxGkxAbD2Sy-4coc1jP9c08WPfbvHS1gh4DqLpGERlqDf3K5wjhDeCc7u1jYCzd5w0EjqBrpSBzSZ-8MORjpdqKg8MR6SEe'"
+                            alt="Pentas Seni Santri" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">travel_explore</span>
+                            20 Juni 2024
+                            <span
+                                class="ml-auto bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-sm py-xs rounded-full">Rihlah</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">
+                            Rihlah Edukatif Santri ke Solo Safari
+                        </h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">
+                            Kegiatan wisata edukasi ini menjadi sarana pembelajaran sekaligus mempererat kebersamaan
+                            antar santri di luar lingkungan pesantren.
+                        </p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article
+                    class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:shadow-md transition-all border-t-4 border-t-secondary flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="../image/berita/6.JPG"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDNaJIkJQ9wUgsz3GjjoMOk_QUGOvn2Ywg1nDmsuBn82lZD_jANFeO8J5zQaFmMaix-KZOKP6Cfj1cH1U-TzRnAkp6GTUMNbTCl5SpYpAB3N5NzI1-dh6QAmvhz7_HOIYjsgs1MOMpIr0Ua_6BjSVRb0UNiBi4ovhomqHugeND-vFMR8u7NRfINUd_niIoFhxMQvGVMC1oVcpX1PWrMlBM9l4b27loItux01uwYFgxUyfhdUQd1HzIzzdhU9nnt7hRzUIUz6J6Fqfq5'"
+                            alt="Kajian Kitab Kuning" />
+                    </div>
+                    <div class="p-md flex flex-col flex-1">
+                        <div
+                            class="flex items-center gap-sm text-on-surface-variant font-label-caps text-label-caps mb-sm">
+                            <span class="material-symbols-outlined text-[18px]">military_tech</span>
+                            15 Juni 2024
+                            <span
+                                class="ml-auto bg-primary/10 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full">Prestasi</span>
+                        </div>
+                        <h3 class="font-h3 text-h3 text-primary mb-sm leading-snug">
+                            Delegasi Santri Tampil dalam Aksi Solidaritas dan Perdamaian
+                        </h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-md line-clamp-2 flex-1">
+                            Santri MITQ AL-HIKAM turut berpartisipasi dalam kegiatan bertema kemanusiaan dan perdamaian
+                            sebagai bentuk kepedulian sosial generasi muda Islam.
+                        </p>
+                        <a class="text-secondary font-semibold font-label-caps text-label-caps hover:underline inline-flex items-center gap-xs"
+                            href="#">
+                            Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- ===== GALERI KEGIATAN — menggunakan gambar dari folder image ===== -->
+            <div class="mt-xl">
+                <div class="flex items-center justify-between mb-md">
+                    <div>
+                        <span
+                            class="font-label-caps text-label-caps text-secondary mb-xs inline-block">Dokumentasi</span>
+                        <h2 class="font-h2 text-h2 text-primary">Galeri Kegiatan</h2>
+                    </div>
+                    <a class="text-primary font-label-caps text-label-caps border-b border-primary hover:text-primary-container transition-colors"
+                        href="#">Lihat Semua Foto</a>
+                </div>
+
+                <!-- Bento Grid Galeri -->
+                <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-sm" style="height: 480px;">
+
+                    <!-- Gambar 1 — tall (col 1, row 1-2) -->
+                    <div class="col-span-1 row-span-2 rounded-xl overflow-hidden relative group cursor-pointer"
+                        onclick="openLightbox('../image/galeri/1.jpg', 'Kegiatan Santri')">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="../image/galeri/1.jpg"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4GYefKztnPTtY2sICBzyALAqs0D1oJvRR6rgZiwdG7NpUlGmu6mNP_ueG3rLSsT4G_tb9I1-EplYI2XDzRFQ0TomkZsCP1PzMBCrUc-wTvme8sjq9l8an2EaDqGTRRJidHgh4NNIMUekrVXErpr3CpCU5muqYWYzMEsyykjF6lQkOAbxGkxAbD2Sy-4coc1jP9c08WPfbvHS1gh4DqLpGERlqDf3K5wjhDeCc7u1jYCzd5w0EjqBrpSBzSZ-8MORjpdqKg8MR6SEe'"
+                            alt="Galeri 1" />
+                        <div
+                            class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-md left-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span
+                                class="bg-white/90 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full text-[11px] flex items-center gap-xs">
+                                <span class="material-symbols-outlined text-[14px]">zoom_in</span> Lihat
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Gambar 2 — wide top (col 2-3, row 1) -->
+                    <div class="col-span-2 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer"
+                        onclick="openLightbox('../image/galeri/2.jpg', 'Kegiatan Santri')">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="../image/galeri/2.jpg"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDNaJIkJQ9wUgsz3GjjoMOk_QUGOvn2Ywg1nDmsuBn82lZD_jANFeO8J5zQaFmMaix-KZOKP6Cfj1cH1U-TzRnAkp6GTUMNbTCl5SpYpAB3N5NzI1-dh6QAmvhz7_HOIYjsgs1MOMpIr0Ua_6BjSVRb0UNiBi4ovhomqHugeND-vFMR8u7NRfINUd_niIoFhxMQvGVMC1oVcpX1PWrMlBM9l4b27loItux01uwYFgxUyfhdUQd1HzIzzdhU9nnt7hRzUIUz6J6Fqfq5'"
+                            alt="Galeri 2" />
+                        <div
+                            class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-md left-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span
+                                class="bg-white/90 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full text-[11px] flex items-center gap-xs">
+                                <span class="material-symbols-outlined text-[14px]">zoom_in</span> Lihat
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Gambar 3 — small (col 4, row 1) -->
+                    <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer"
+                        onclick="openLightbox('../image/galeri/3.jpg', 'Kegiatan Santri')">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="../image/galeri/3.jpg"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBFz50S7mjo-sRXqRurHUuZtdqzyAFlVadsSIwLzqx20DPycfFOxcDZvebYruA1UVjOVot_cj6_eUinst34dVy7eIiqXtxQ7h8YHQjPInXqb9jPHtcnqJAI6fNdz7ud6ontlapii9PtShJPA2cwB-UaDEO2tjSu10nnzQkBOsTZmbDFM8FGVtVRtpPLsrAzz7A7ofDHsGrV3G28oQv1xsop8QMcltFle5xL1-mhcvPlWh-nyYBCf_YkYDkPLGX_UkWRqsR69nxlMRAL'"
+                            alt="Galeri 3" />
+                        <div
+                            class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-md left-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span
+                                class="bg-white/90 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full text-[11px] flex items-center gap-xs">
+                                <span class="material-symbols-outlined text-[14px]">zoom_in</span> Lihat
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Gambar 4 — small (col 2, row 2) -->
+                    <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer"
+                        onclick="openLightbox('../image/galeri/4.jpg', 'Kegiatan Santri')">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="../image/galeri/4.jpg"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuA1dl0m-indLLi3YOVlKmZJnWQ32WHwmbeZMTmZtxHeHfMZpT4WXZ2RjTkKH4-tXobOB6IP7wlrf0_pQaGfyVI_EsbMJv7w5HCgchRfBFgnC5Phzvf0Ma2Ar7eyuAYoOggeI9rySxFbpLcFN1ZIt8vHathPNU0ma1cXgoVeTmIuCm61j3hdpRTLcFeikXXf4HI0OsVCoT2psiw6YFU-ETsUGXX_i5rH7o2xgZPUEeNZ5CrQQzQoDsZAlOZsatN9pmsnh1n6yyf5jsNE'"
+                            alt="Galeri 4" />
+                        <div
+                            class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-md left-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span
+                                class="bg-white/90 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full text-[11px] flex items-center gap-xs">
+                                <span class="material-symbols-outlined text-[14px]">zoom_in</span> Lihat
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Gambar 5 — wide bottom (col 3-4, row 2) -->
+                    <div class="col-span-2 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer"
+                        onclick="openLightbox('../image/galeri/5.jpg', 'Kampus MITQ AL-HIKAM')">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="../image/galeri/5.jpg"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCOkapYc5ZBCN7y2ZHhacXA7RHhkV8TTkrB6GiDcXS2BFG1gVLm43tIVv9h96jk-DO0WCD8y7R91ULXduhgJ9VJqVNIDaj7ZoDfGIEW0Dh44RidUUEzCFKnwUt0jEH7OWRV-WkDUpDoBTKAslWAmW_EbgTWNTbMk4bBlfqOFpk_draEV89BVwGImoyKtmCXtZzTUxqETs281L_kAyVdaDaTdlzzCkjZyQt3Q7vw0vPmpzzbSb1Wn5QQdf9Y3T4eRuCRFEWK7YSQiKt2'"
+                            alt="Galeri 5" />
+                        <div
+                            class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-md left-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span
+                                class="bg-white/90 text-primary font-label-caps text-label-caps px-sm py-xs rounded-full text-[11px] flex items-center gap-xs">
+                                <span class="material-symbols-outlined text-[14px]">zoom_in</span> Lihat
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Info path gambar -->
+                <p class="font-label-caps text-label-caps text-on-surface-variant/60 mt-sm text-center">
+                    * Gambar diambil dari folder <code
+                        class="bg-surface-container px-xs rounded text-primary">../image/</code> — sesuaikan nama file
+                    galeri dengan foto asli di lokal.
+                </p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-xl flex justify-center items-center gap-sm">
+                <button
+                    class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-semibold shadow-sm">1</button>
+                <button
+                    class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">2</button>
+                <button
+                    class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">3</button>
+                <button
+                    class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
+        <div class="flex flex-col gap-sm">
+            <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">STTD Al Hikam</div>
+            <p class="font-body-md text-body-md text-on-surface-variant">Sekolah Tahfizh Tingkat Dasar yang berfokus
+                pada kualitas hafalan dan penanaman aqidah shohihah.</p>
+            <div class="flex gap-sm mt-md">
+                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-base" data-icon="public">public</span>
+                </a>
+                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-base" data-icon="mail">mail</span>
+                </a>
+                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-base" data-icon="phone">phone</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-col gap-sm">
+            <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Peta Situs</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Akreditasi</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Kegiatan Santri</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Galeri</a>
+        </div>
+        <div class="flex flex-col gap-sm">
+            <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Kebijakan Privasi</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
+                href="#">Syarat &amp; Ketentuan</a>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 STTD Al Hikam Surakarta. All
+                Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="" />
+        <span id="lightbox-caption"></span>
+    </div>
+
+    <script>
+        function openLightbox(src, caption) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox(e) {
+            if (!e || e.target !== document.getElementById('lightbox-img')) {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+
+</html>
