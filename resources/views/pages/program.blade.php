@@ -112,19 +112,20 @@
                         box-shadow: 0 10px 30px -10px rgba(0, 77, 52, 0.08);
                 }
         </style>
+    @include('partials.responsive-fixes')
 </head>
 
 <body class="bg-background font-body-md text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
         <!-- TopNavBar -->
         <nav
                 class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
-                <div class="flex items-center gap-sm">
+                <a href="{{ route('home') }}" class="flex items-center gap-sm">
                         <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam"
                                 class="w-12 h-12 object-cover rounded-full" />
                         <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
                         </div>
-                </div>
+                </a>
                 <div class="hidden md:flex items-center gap-md">
                         <a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface hover:text-primary transition-colors"
                                 href="{{ route('home') }}">
@@ -147,10 +148,12 @@
                                 Hubungi Kami
                         </a>
                 </div>
-                <button
-                        class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all active:opacity-80">
-                        Daftar Sekarang (PPDB)
-                </button>
+                <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="hidden md:inline-flex bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all active:opacity-80">Daftar Sekarang (PPDB)</a>
+
+        <button type="button" data-mobile-menu-button aria-expanded="false" aria-label="Buka menu navigasi" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-outline-variant/50 bg-white/80 text-primary shadow-sm transition hover:bg-primary hover:text-white">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        @include('partials.mobile-menu')
         </nav>
         <!-- Hero Section -->
         <header class="relative pt-xl pb-xl px-gutter islamic-pattern mt-16 overflow-hidden">
@@ -165,11 +168,7 @@
                                         {{ $cmsContent->get('program.hero.subtitle', 'Menyeimbangkan hafalan Al-Quran dengan pemahaman agama dan kecakapan akademik umum untuk mencetak generasi Rabbani.') }}
                                 </p>
                                 <div class="flex gap-sm">
-                                        <button
-                                                class="bg-secondary text-on-secondary px-md py-sm rounded-lg font-label-caps text-label-caps flex items-center gap-xs">
-                                                Lihat Kurikulum <span class="material-symbols-outlined text-sm"
-                                                        data-icon="arrow_downward">arrow_downward</span>
-                                        </button>
+                                        <a href="#kurikulum" class="bg-secondary text-on-secondary px-md py-sm rounded-lg font-label-caps text-label-caps flex items-center gap-xs">Lihat Kurikulum <span class="material-symbols-outlined text-sm" data-icon="arrow_downward">arrow_downward</span></a>
                                 </div>
                         </div>
                         <div class="relative group">
@@ -450,46 +449,43 @@
                 </div>
         </section>
         <!-- Kurikulum Umum & Kesantrian -->
-        <section class="py-xl px-gutter bg-white">
+        <section id="kurikulum" class="py-xl px-gutter bg-white scroll-mt-28">
                 <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl">
                         <!-- Kurikulum Umum -->
                         <div>
                                 <h2 class="font-h2 text-h2 text-primary mb-lg border-l-4 border-secondary pl-md">
                                         Kurikulum Umum</h2>
                                 <div class="space-y-md">
-                                        <div
-                                                class="group p-md border-b border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-lowest transition-colors">
-                                                <div>
-                                                        <p class="font-label-caps text-label-caps text-secondary mb-xs">
-                                                                MATERI INTI</p>
-                                                        <h5 class="font-body-lg font-bold text-on-surface">Bahasa
-                                                                Indonesia &amp; Matematika</h5>
-                                                </div>
-                                                <span class="material-symbols-outlined text-outline group-hover:text-primary"
-                                                        data-icon="chevron_right">chevron_right</span>
-                                        </div>
-                                        <div
-                                                class="group p-md border-b border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-lowest transition-colors">
-                                                <div>
-                                                        <p class="font-label-caps text-label-caps text-secondary mb-xs">
-                                                                SAINS</p>
-                                                        <h5 class="font-body-lg font-bold text-on-surface">IPAS (Ilmu
-                                                                Pengetahuan Alam &amp; Sosial)</h5>
-                                                </div>
-                                                <span class="material-symbols-outlined text-outline group-hover:text-primary"
-                                                        data-icon="chevron_right">chevron_right</span>
-                                        </div>
-                                        <div
-                                                class="group p-md border-b border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-lowest transition-colors">
-                                                <div>
-                                                        <p class="font-label-caps text-label-caps text-secondary mb-xs">
-                                                                LINGUISTIK</p>
-                                                        <h5 class="font-body-lg font-bold text-on-surface">Bahasa Arab
-                                                                &amp; Inggris Dasar</h5>
-                                                </div>
-                                                <span class="material-symbols-outlined text-outline group-hover:text-primary"
-                                                        data-icon="chevron_right">chevron_right</span>
-                                        </div>
+                                        <details class="group rounded-xl border border-outline-variant/40 bg-white p-md transition hover:bg-surface-container-lowest" open>
+                                                <summary class="flex cursor-pointer list-none items-center justify-between gap-md">
+                                                        <div>
+                                                                <p class="font-label-caps text-label-caps text-secondary mb-xs">MATERI INTI</p>
+                                                                <h5 class="font-body-lg font-bold text-on-surface">Bahasa Indonesia &amp; Matematika</h5>
+                                                        </div>
+                                                        <span class="material-symbols-outlined text-outline transition group-open:rotate-90 group-hover:text-primary">chevron_right</span>
+                                                </summary>
+                                                <p class="mt-sm text-body-md text-on-surface-variant">Penguatan literasi, numerasi, penalaran dasar, dan problem solving yang terintegrasi dengan adab belajar santri.</p>
+                                        </details>
+                                        <details class="group rounded-xl border border-outline-variant/40 bg-white p-md transition hover:bg-surface-container-lowest">
+                                                <summary class="flex cursor-pointer list-none items-center justify-between gap-md">
+                                                        <div>
+                                                                <p class="font-label-caps text-label-caps text-secondary mb-xs">SAINS</p>
+                                                                <h5 class="font-body-lg font-bold text-on-surface">IPAS (Ilmu Pengetahuan Alam &amp; Sosial)</h5>
+                                                        </div>
+                                                        <span class="material-symbols-outlined text-outline transition group-open:rotate-90 group-hover:text-primary">chevron_right</span>
+                                                </summary>
+                                                <p class="mt-sm text-body-md text-on-surface-variant">Pembelajaran observasi alam, sosial, dan lingkungan sekitar untuk menumbuhkan rasa syukur serta kepekaan santri.</p>
+                                        </details>
+                                        <details class="group rounded-xl border border-outline-variant/40 bg-white p-md transition hover:bg-surface-container-lowest">
+                                                <summary class="flex cursor-pointer list-none items-center justify-between gap-md">
+                                                        <div>
+                                                                <p class="font-label-caps text-label-caps text-secondary mb-xs">LINGUISTIK</p>
+                                                                <h5 class="font-body-lg font-bold text-on-surface">Bahasa Arab &amp; Inggris Dasar</h5>
+                                                        </div>
+                                                        <span class="material-symbols-outlined text-outline transition group-open:rotate-90 group-hover:text-primary">chevron_right</span>
+                                                </summary>
+                                                <p class="mt-sm text-body-md text-on-surface-variant">Pengenalan kosakata dan komunikasi dasar untuk menunjang pemahaman Al-Qur'an serta wawasan global santri.</p>
+                                        </details>
                                 </div>
                         </div>
                         <!-- Ekstrakurikuler -->
@@ -542,52 +538,8 @@
                         </div>
                 </div>
         </section>
-        <!-- Footer -->
-        <footer
-                class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
-                <div class="flex flex-col gap-sm">
-                        <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MITQ Al-Hikam</div>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Sekolah Tahfizh Tingkat Dasar yang
-                                berfokus
-                                pada kualitas hafalan dan penanaman aqidah shohihah.</p>
-                        <div class="flex gap-sm mt-md">
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base"
-                                                data-icon="public">public</span>
-                                </a>
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base" data-icon="mail">mail</span>
-                                </a>
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base" data-icon="phone">phone</span>
-                                </a>
-                        </div>
-                </div>
-                <div class="flex flex-col gap-sm">
-                        <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
-            @forelse (($footerLinks['quick_links'] ?? collect()) as $footerLink)
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ $footerLink->url }}">{{ $footerLink->label }}</a>
-            @empty
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('home') }}">Beranda</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('program') }}">Program</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('news.index') }}">News</a>
-            @endforelse
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Kebijakan Privasi</a>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Syarat &amp; Ketentuan</a>
-                        <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 MITQ Al-Hikam
-                                Surakarta. All
-                                Rights Reserved.</p>
-                </div>
-        </footer>
-<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+    @include('partials.site-footer')
+<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="floating-ppdb fixed z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
 </body>
 
 </html>

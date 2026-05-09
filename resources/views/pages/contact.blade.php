@@ -111,19 +111,20 @@
                         background: linear-gradient(135deg, #f9f9ff 0%, #e7eefe 100%);
                 }
         </style>
+    @include('partials.responsive-fixes')
 </head>
 
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
         <!-- TopNavBar -->
         <nav
                 class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
-                <div class="flex items-center gap-sm">
+                <a href="{{ route('home') }}" class="flex items-center gap-sm">
                         <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam"
                                 class="w-12 h-12 object-cover rounded-full" />
                         <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
                         </div>
-                </div>
+                </a>
                 <div class="hidden md:flex items-center gap-md">
                         <a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface hover:text-primary transition-colors"
                                 href="{{ route('home') }}">
@@ -146,10 +147,12 @@
                                 Hubungi Kami
                         </a>
                 </div>
-                <button
-                        class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all shadow-sm">
-                        Daftar Sekarang (PPDB)
-                </button>
+                <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="hidden md:inline-flex bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all shadow-sm">Daftar Sekarang (PPDB)</a>
+
+        <button type="button" data-mobile-menu-button aria-expanded="false" aria-label="Buka menu navigasi" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-outline-variant/50 bg-white/80 text-primary shadow-sm transition hover:bg-primary hover:text-white">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        @include('partials.mobile-menu')
         </nav>
         <main class="pt-[100px] islamic-pattern">
                 <!-- Hero Section -->
@@ -207,23 +210,9 @@
                                                         </div>
                                                 </div>
                                         </div>
-                                        <!-- Map Placeholder -->
-                                        <div
-                                                class="relative rounded-xl overflow-hidden h-[300px] border border-outline-variant/50 group">
-                                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                        data-alt="A clean, minimalist digital map representation showing the city of Surakarta in Central Java. The map uses a professional institutional color palette of soft greens and light greys to maintain the brand identity. Subtle icons indicate landmarks like mosques and schools, emphasizing a serene and organized urban layout. The lighting is bright and even, reflecting a light-mode UI aesthetic."
-                                                        data-location="Surakarta"
-                                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYxUM_BGXmXTfttj0l07fc4E1uk6aq_wv19k2U-RXq2MS89zBoAZPwPdiPzNUkX02gi1fS7we0nyaz3sXP587xjLupm6oli22OT7Avw7oiXc-ubcs8s_RJOoeOXYDMILYs2ksONszJZL1JabzAjAJPhbhG5C0obIUVZOXFs6V_yzZHYNXKvJ-75aCQAxohO-RKHmxSqbsfKBYriAEWU5I9BUXYGjenNupVCw4o7A_JI46sqSad0G-7hwa80aFAJCNaEtsa0zWKPJbM" />
-                                                <div
-                                                        class="absolute inset-0 bg-primary/10 flex items-center justify-center pointer-events-none">
-                                                        <div
-                                                                class="bg-surface p-sm rounded-lg shadow-lg flex items-center gap-xs">
-                                                                <span class="material-symbols-outlined text-error"
-                                                                        style="font-variation-settings: 'FILL' 1;">location_on</span>
-                                                                <span
-                                                                        class="font-label-caps text-label-caps text-primary">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }} Surakarta</span>
-                                                        </div>
-                                                </div>
+                                        <!-- Google Maps Embed -->
+                                        <div class="relative h-[300px] overflow-hidden rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <iframe class="absolute inset-0 h-full w-full" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Lokasi MITQ Al-Hikam Surakarta" src="https://www.google.com/maps?q=Begalon%20Panularan%20Laweyan%20Surakarta&output=embed"></iframe>
                                         </div>
                                 </div>
                                 <!-- Contact Form -->
@@ -287,84 +276,9 @@
                                 </div>
                         </div>
                 </section>
-                <!-- Social Presence Section -->
-                <section class="max-w-container-max mx-auto px-gutter py-xl">
-                        <div
-                                class="bg-primary-container rounded-xl p-lg flex flex-col md:flex-row items-center justify-between gap-lg overflow-hidden relative">
-                                <div
-                                        class="absolute right-0 top-0 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
-                                        <span class="material-symbols-outlined text-[200px]"
-                                                style="font-variation-settings: 'wght' 100;">diversity_3</span>
-                                </div>
-                                <div class="relative z-10 text-center md:text-left">
-                                        <h2 class="font-h2 text-h2 text-on-primary-container mb-xs">Ikuti Perjalanan
-                                                Kami</h2>
-                                        <p class="text-on-primary-container/80">Dapatkan update terbaru mengenai
-                                                kegiatan santri dan prestasi sekolah.</p>
-                                </div>
-                                <div class="flex gap-md relative z-10">
-                                        <a class="bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 p-md rounded-full text-on-primary-container transition-all border border-on-primary-container/20"
-                                                href="#">
-                                                <span class="material-symbols-outlined">public</span>
-                                        </a>
-                                        <a class="bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 p-md rounded-full text-on-primary-container transition-all border border-on-primary-container/20"
-                                                href="#">
-                                                <span class="material-symbols-outlined">camera</span>
-                                        </a>
-                                        <a class="bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 p-md rounded-full text-on-primary-container transition-all border border-on-primary-container/20"
-                                                href="#">
-                                                <span class="material-symbols-outlined">play_circle</span>
-                                        </a>
-                                </div>
-                        </div>
-                </section>
         </main>
-        <!-- Footer -->
-        <footer
-                class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
-                <div class="flex flex-col gap-sm">
-                        <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MITQ Al-Hikam</div>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Sekolah Tahfizh Tingkat Dasar yang
-                                berfokus
-                                pada kualitas hafalan dan penanaman aqidah shohihah.</p>
-                        <div class="flex gap-sm mt-md">
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base"
-                                                data-icon="public">public</span>
-                                </a>
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base" data-icon="mail">mail</span>
-                                </a>
-                                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                                        href="#">
-                                        <span class="material-symbols-outlined text-base" data-icon="phone">phone</span>
-                                </a>
-                        </div>
-                </div>
-                <div class="flex flex-col gap-sm">
-                        <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
-            @forelse (($footerLinks['quick_links'] ?? collect()) as $footerLink)
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ $footerLink->url }}">{{ $footerLink->label }}</a>
-            @empty
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('home') }}">Beranda</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('program') }}">Program</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('news.index') }}">News</a>
-            @endforelse
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Kebijakan Privasi</a>
-                        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                                href="#">Syarat &amp; Ketentuan</a>
-                        <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 MITQ Al-Hikam
-                                Surakarta. All
-                                Rights Reserved.</p>
-                </div>
-        </footer>
-<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+    @include('partials.site-footer')
+<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="floating-ppdb fixed z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
 </body>
 
 </html>

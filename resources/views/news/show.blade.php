@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
     <script>tailwind.config={theme:{extend:{colors:{primary:'#004d34',secondary:'#735c00',background:'#f9f9ff'},fontFamily:{sans:['Inter'],serif:['Newsreader']}}}}</script>
+    @include('partials.responsive-fixes')
 </head>
 <body class="bg-background text-slate-900 font-sans">
     <header class="sticky top-0 z-40 border-b bg-white/90 px-6 py-4 backdrop-blur">
@@ -15,6 +16,11 @@
             <a href="{{ route('home') }}" class="flex items-center gap-3 font-bold text-primary"><img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" class="h-11 w-11 rounded-full" alt="Logo">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}</a>
             <a href="{{ route('news.index') }}" class="text-sm font-semibold text-secondary">Kembali ke News</a>
         </div>
+
+        <button type="button" data-mobile-menu-button aria-expanded="false" aria-label="Buka menu navigasi" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-outline-variant/50 bg-white/80 text-primary shadow-sm transition hover:bg-primary hover:text-white">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        @include('partials.mobile-menu')
     </header>
     <main>
         <article class="mx-auto max-w-4xl px-6 py-12">
@@ -42,5 +48,6 @@
             </section>
         @endif
     </main>
+    @include('partials.site-footer')
 </body>
 </html>

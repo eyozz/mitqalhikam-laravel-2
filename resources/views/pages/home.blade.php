@@ -114,18 +114,19 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5 20h20l-15 12 5 23-15-15-15 15 5-23-15-12h20z' fill='%23004d34' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
     </style>
+    @include('partials.responsive-fixes')
 </head>
 
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
     <!-- Top Navigation -->
     <header
         class="fixed top-0 w-full flex justify-between items-center px-gutter py-4 bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 dark:border-outline/20 shadow-sm shadow-primary/5">
-        <div class="flex items-center gap-sm">
+        <a href="{{ route('home') }}" class="flex items-center gap-sm">
             <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" />
             <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
             </div>
-        </div>
+        </a>
         <nav class="hidden md:flex items-center space-x-md">
             <a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed border-b-2 border-secondary dark:border-secondary-fixed pb-1"
                 href="{{ route('home') }}">
@@ -148,14 +149,16 @@
                 Hubungi Kami
             </a>
         </nav>
-        <button
-            class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all shadow-md active:opacity-80 duration-200">
-            Daftar Sekarang (PPDB)
+        <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="hidden md:inline-flex bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-container transition-all shadow-md active:opacity-80 duration-200">Daftar Sekarang (PPDB)</a>
+
+        <button type="button" data-mobile-menu-button aria-expanded="false" aria-label="Buka menu navigasi" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-outline-variant/50 bg-white/80 text-primary shadow-sm transition hover:bg-primary hover:text-white">
+            <span class="material-symbols-outlined">menu</span>
         </button>
+        @include('partials.mobile-menu')
     </header>
     <main class="mt-20">
         <!-- Hero Section -->
-        <section class="relative min-h-[870px] flex items-center islamic-pattern overflow-hidden">
+        <section class="home-hero-section relative min-h-[870px] flex items-center islamic-pattern overflow-hidden">
             <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
                 <div class="z-10 order-2 lg:order-1">
                     <span
@@ -167,14 +170,8 @@
                         {{ $cmsContent->get('home.hero.subtitle', 'MITQ Al-Hikam menghadirkan pembelajaran tahfizh, adab, dan ilmu dasar dalam suasana halaqah yang hangat dan terarah.') }}
                     </p>
                     <div class="flex flex-wrap gap-md">
-                        <button
-                            class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-lg hover:shadow-primary/20 transition-all">
-                            Pelajari Program Kami
-                        </button>
-                        <button
-                            class="border-2 border-secondary text-secondary px-lg py-sm rounded-lg font-label-caps text-label-caps hover:bg-secondary/5 transition-all">
-                            Daftar Sekarang
-                        </button>
+                        <a href="{{ route('program') }}" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-lg hover:shadow-primary/20 transition-all">Pelajari Program Kami</a>
+                        <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="border-2 border-secondary text-secondary px-lg py-sm rounded-lg font-label-caps text-label-caps hover:bg-secondary/5 transition-all">Daftar Sekarang</a>
                     </div>
                 </div>
                 <div class="relative order-1 lg:order-2">
@@ -335,66 +332,24 @@
                     {{ $cmsContent->get('home.cta.body', 'Mari bergabung dalam keluarga besar MITQ Al-Hikam Surakarta. Pendaftaran santri baru sedang berlangsung.') }}
                 </p>
                 <div class="flex justify-center gap-md">
-                    <button
-                        class="bg-secondary text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-xl hover:scale-105 transition-all">
+                    <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="bg-secondary text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-xl hover:scale-105 transition-all">
                         HUBUNGI ADMIN PPDB
-                    </button>
-                    <button
-                        class="border border-on-primary/30 text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-xl hover:bg-white/10 hover:scale-105 transition-all">
+                    </a>
+                    <a href="{{ route('contact') }}" class="border border-on-primary/30 text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps shadow-xl hover:bg-white/10 hover:scale-105 transition-all">
                         DOWNLOAD BROSUR
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
-    <!-- Footer -->
-    <footer
-        class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-3 gap-md bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant/50">
-        <div class="flex flex-col gap-sm">
-            <div class="font-h3 text-h3 text-primary dark:text-primary-fixed">MITQ Al-Hikam</div>
-            <p class="font-body-md text-body-md text-on-surface-variant">{{ $cmsSettings['footer_description'] ?? 'Lembaga pendidikan tahfizh dasar yang berfokus pada Al-Quran, adab, dan pembinaan karakter santri.' }}</p>
-            <div class="flex gap-sm mt-md">
-                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                    href="#">
-                    <span class="material-symbols-outlined text-base" data-icon="public">public</span>
-                </a>
-                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                    href="#">
-                    <span class="material-symbols-outlined text-base" data-icon="mail">mail</span>
-                </a>
-                <a class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-                    href="#">
-                    <span class="material-symbols-outlined text-base" data-icon="phone">phone</span>
-                </a>
-            </div>
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-primary mb-sm">NAVIGASI</h4>
-            @forelse (($footerLinks['quick_links'] ?? collect()) as $footerLink)
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ $footerLink->url }}">{{ $footerLink->label }}</a>
-            @empty
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('home') }}">Beranda</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('program') }}">Program</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300" href="{{ route('news.index') }}">News</a>
-            @endforelse
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-primary mb-sm">LEGALITAS</h4>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Kebijakan Privasi</a>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-300"
-                href="#">Syarat &amp; Ketentuan</a>
-            <p class="font-body-md text-body-md text-on-surface-variant mt-md">© 2024 MITQ Al-Hikam Surakarta. All
-                Rights Reserved.</p>
-        </div>
-    </footer>
+    @include('partials.site-footer')
     <!-- Floating Action Button -->
-    <a class="fixed bottom-gutter right-gutter z-50 bg-secondary text-on-secondary-fixed p-md rounded-full shadow-2xl flex items-center gap-sm group hover:pr-lg transition-all"
-        href="#">
+    <a class="floating-chat fixed z-50 bg-secondary text-on-secondary-fixed p-md rounded-full shadow-2xl flex items-center gap-sm group hover:pr-lg transition-all"
+        href="{{ route('contact') }}">
         <span class="material-symbols-outlined" data-icon="chat_bubble" data-weight="fill">chat_bubble</span>
         <span class="font-label-caps text-label-caps hidden group-hover:inline">HUBUNGI PPDB</span>
     </a>
-<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+<a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="floating-ppdb fixed z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
 </body>
 
 </html>
