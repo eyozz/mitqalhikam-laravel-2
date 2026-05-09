@@ -35,4 +35,6 @@ return [
         ],
     ],
 
+    'ppdb_url' => env('PPDB_GOOGLE_FORM_URL', 'https://forms.gle/example-ppdb-sttd-al-hikam'),
+
 ];
