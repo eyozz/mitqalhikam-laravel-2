@@ -18,7 +18,7 @@ Set pada App service:
 APP_NAME="MITQ Al-Hikam"
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://${{RAILWAY_PUBLIC_DOMAIN}}
+APP_URL=http://localhost
 LOG_CHANNEL=stderr
 DB_CONNECTION=mysql
 DB_HOST=${{MySQL.MYSQLHOST}}
@@ -67,4 +67,4 @@ Aplikasi menjalankan `php artisan storage:link || true` saat start agar file upl
 
 ## Public Domain
 
-Generate public domain dari Railway dashboard atau Railway CLI pada service Laravel.
+Generate public domain dari Railway dashboard atau Railway CLI pada service Laravel, lalu update `APP_URL` ke domain final, misalnya `https://nama-domain.up.railway.app`.
