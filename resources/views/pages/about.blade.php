@@ -199,77 +199,50 @@
                 <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
                 <p class="mt-md text-on-surface-variant">Dedikasi para pimpinan untuk visi pendidikan berkelanjutan.</p>
             </div>
-            <!-- Bento Grid for Leadership -->
+            @php
+                $leaderCards = [
+                    [
+                        'role' => 'PEMBINA',
+                        'name' => $cmsContent->get('about.leadership.pembina_name', 'Sigit Basuki'),
+                        'photo' => $cmsContent->get('about.leadership.pembina_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCowMwMNuuodAKEpt42mj39-8MYpfpQhD7HHLcH-LuGQQDBRGSM_Rq5D2Pci0GAy4Ux9UA91KTqgjyj6OnMLtduCai3f009ukBfYQjCsY9_xRp27e-vpyi7RlrUSRnH7G4dBC9b8tZ5U3zgkq4JGteYcK0w6-3zBP8zx9osAAmqrz9V7LX83TZGz5bo03pvp-4iYe7JLlj02-sH3G-mGWzQeZdYgAwC9axjZC5hqvNkhZrATs6BfZDHsaZheyi17ESw0bjK6EhvUn2K'),
+                        'alt' => 'Foto Pembina MITQ Al-Hikam',
+                    ],
+                    [
+                        'role' => 'PENGAWAS',
+                        'name' => $cmsContent->get('about.leadership.pengawas_name', 'Muzayyin Marzuki'),
+                        'photo' => $cmsContent->get('about.leadership.pengawas_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDdO-UnbachbWq0IzmEhIVQH7B7ddqeteqyfmXRQl7KXZ7Se6SCkRMf6YQrt_dJg3GxLeBaQU0HS8nbkxR0C9e58Vu4M-S8w5yHpcnb9Kofg4dhnLzuf4a4dhiLEBihi98IchtFusUXg4ISZ4FEiOomBHiJG6Jh3TCH4rKTekeNpDSMHpa_3FjgCGScIpyYkPO_52GX5bGThtuGhN4l66dv-aTW0nXW-lFIrEezH2444GyVIu9zSQPvwzZKkGjxs7TeI_zD_TJVroDy'),
+                        'alt' => 'Foto Pengawas MITQ Al-Hikam',
+                    ],
+                    [
+                        'role' => 'KETUA YAYASAN',
+                        'name' => $cmsContent->get('about.leadership.ketua_yayasan_name', 'Anas Ma’ruf'),
+                        'photo' => $cmsContent->get('about.leadership.ketua_yayasan_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDOKEHUqnjCVkqjASu36zkkJGYDBbX4pqM3g2cpqA8sJ9j5beVs3LYg4WnU68D1Qq6IgNtwyc59tC6PXV3ugkCQg1HdMdcTC0v6is-HKEsI6CHazSZQtnXC5eHQlLlxOcQUanvWBTyXjlq-_PHwEKP_mFux0wdnjyP4w6L0ni-RFbinL0nvlQRWqFzNBoX2mI6d_Zky_-zh_9l3PL3xG_5gRtspbqfQ1WCTotkhxveEU1dBNbmeswEsERJW-dfIGr9lOXpgFadUPjxm'),
+                        'alt' => 'Foto Ketua Yayasan MITQ Al-Hikam',
+                    ],
+                    [
+                        'role' => 'KEPALA SEKOLAH',
+                        'name' => $cmsContent->get('about.leadership.kepala_sekolah_name', 'Dudi Budi Astoko, S.Pd.I., M.Pd.'),
+                        'photo' => $cmsContent->get('about.leadership.kepala_sekolah_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMAzwsTBHihMR8-AxyXCWwS5qW9-yF9uBmK--8_dDFK8FJGDPKESr6-oNajHZqtz-kkQKiFgaNSctG92hkqClVir-Vf2rTCWlJAfIqv2nQHQhhud5BJdPdVBYG9U0_r6uB3rYbGnnPZvKE8EoVr3LrqYDDqRDcV-qBxpZQ6UFJMXu266fVjdNZUfRL-xyFk8E2Gs3xBOAeOJAomCuTIQUURQaVZ74SGL-PAWQVVxhH0Oms9O5R5RX-e8GYxGwBtzbBFP4WadkZYW2T'),
+                        'alt' => 'Foto Kepala Sekolah MITQ Al-Hikam',
+                        'featured' => true,
+                    ],
+                ];
+            @endphp
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-md">
-                <!-- Pembina -->
-                <div
-                    class="md:col-span-2 bg-white p-md rounded-xl border border-outline-variant hover:border-primary transition-all shadow-sm group">
-                    <div class="flex items-center gap-md">
-                        <div
-                            class="w-24 h-24 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary/20">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Professional portrait of an elderly gentleman with a wise and friendly expression, wearing formal traditional Indonesian attire. The background is a soft-focus office setting with academic books, illuminated by natural warm light to convey authority and scholarly wisdom."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCowMwMNuuodAKEpt42mj39-8MYpfpQhD7HHLcH-LuGQQDBRGSM_Rq5D2Pci0GAy4Ux9UA91KTqgjyj6OnMLtduCai3f009ukBfYQjCsY9_xRp27e-vpyi7RlrUSRnH7G4dBC9b8tZ5U3zgkq4JGteYcK0w6-3zBP8zx9osAAmqrz9V7LX83TZGz5bo03pvp-4iYe7JLlj02-sH3G-mGWzQeZdYgAwC9axjZC5hqvNkhZrATs6BfZDHsaZheyi17ESw0bjK6EhvUn2K" />
-                        </div>
-                        <div>
-                            <span class="font-label-caps text-label-caps text-secondary">PEMBINA</span>
-                            <h3
-                                class="font-h3 text-h3 text-primary group-hover:text-primary-container transition-colors">
-                                Sigit Basuki</h3>
+                @foreach ($leaderCards as $leader)
+                    <div class="md:col-span-2 {{ $leader['featured'] ?? false ? 'bg-primary border-primary shadow-md' : 'bg-white border-outline-variant hover:border-primary shadow-sm' }} p-md rounded-xl border transition-all group">
+                        <div class="flex items-center gap-md">
+                            <div class="w-24 h-24 rounded-full {{ $leader['featured'] ?? false ? 'bg-white/20 border-white/50' : 'bg-surface-container-highest border-primary/20' }} overflow-hidden border-2">
+                                <img class="w-full h-full object-cover" alt="{{ $leader['alt'] }}" src="{{ $leader['photo'] }}" loading="lazy" />
+                            </div>
+                            <div>
+                                <span class="font-label-caps text-label-caps {{ $leader['featured'] ?? false ? 'text-secondary-fixed' : 'text-secondary' }}">{{ $leader['role'] }}</span>
+                                <h3 class="font-h3 text-h3 {{ $leader['featured'] ?? false ? 'text-on-primary' : 'text-primary group-hover:text-primary-container transition-colors' }}">{{ $leader['name'] }}</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Pengawas -->
-                <div
-                    class="md:col-span-2 bg-white p-md rounded-xl border border-outline-variant hover:border-primary transition-all shadow-sm group">
-                    <div class="flex items-center gap-md">
-                        <div
-                            class="w-24 h-24 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary/20">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Portrait of a professional man in his late 50s, displaying a focused and observant demeanor. He is wearing a neat batik shirt, standing against a neutral textured wall. The lighting is balanced and clear, emphasizing his role as an overseer and mentor within an educational institution."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdO-UnbachbWq0IzmEhIVQH7B7ddqeteqyfmXRQl7KXZ7Se6SCkRMf6YQrt_dJg3GxLeBaQU0HS8nbkxR0C9e58Vu4M-S8w5yHpcnb9Kofg4dhnLzuf4a4dhiLEBihi98IchtFusUXg4ISZ4FEiOomBHiJG6Jh3TCH4rKTekeNpDSMHpa_3FjgCGScIpyYkPO_52GX5bGThtuGhN4l66dv-aTW0nXW-lFIrEezH2444GyVIu9zSQPvwzZKkGjxs7TeI_zD_TJVroDy" />
-                        </div>
-                        <div>
-                            <span class="font-label-caps text-label-caps text-secondary">PENGAWAS</span>
-                            <h3
-                                class="font-h3 text-h3 text-primary group-hover:text-primary-container transition-colors">
-                                Muzayyin Marzuki</h3>
-                        </div>
-                    </div>
-                </div>
-                <!-- Yayasan -->
-                <div
-                    class="md:col-span-2 bg-white p-md rounded-xl border border-outline-variant hover:border-primary transition-all shadow-sm group">
-                    <div class="flex items-center gap-md">
-                        <div
-                            class="w-24 h-24 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary/20">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Professional mid-shot of a man representing leadership, wearing a formal suit. His expression is confident and welcoming. The setting is a modern boardroom with soft daylight, reflecting a professional yet accessible institutional head."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOKEHUqnjCVkqjASu36zkkJGYDBbX4pqM3g2cpqA8sJ9j5beVs3LYg4WnU68D1Qq6IgNtwyc59tC6PXV3ugkCQg1HdMdcTC0v6is-HKEsI6CHazSZQtnXC5eHQlLlxOcQUanvWBTyXjlq-_PHwEKP_mFux0wdnjyP4w6L0ni-RFbinL0nvlQRWqFzNBoX2mI6d_Zky_-zh_9l3PL3xG_5gRtspbqfQ1WCTotkhxveEU1dBNbmeswEsERJW-dfIGr9lOXpgFadUPjxm" />
-                        </div>
-                        <div>
-                            <span class="font-label-caps text-label-caps text-secondary">KETUA YAYASAN</span>
-                            <h3
-                                class="font-h3 text-h3 text-primary group-hover:text-primary-container transition-colors">
-                                Anas Ma’ruf</h3>
-                        </div>
-                    </div>
-                </div>
-                <!-- Kepala Sekolah -->
-                <div
-                    class="md:col-span-2 bg-primary p-md rounded-xl border border-primary transition-all shadow-md group">
-                    <div class="flex items-center gap-md">
-                        <div class="w-24 h-24 rounded-full bg-white/20 overflow-hidden border-2 border-white/50">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Portrait of an educator with a warm and inspiring presence, wearing academic attire. He is positioned in front of a school building with students in soft focus in the background, symbolizing his leadership and dedication to the student body."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMAzwsTBHihMR8-AxyXCWwS5qW9-yF9uBmK--8_dDFK8FJGDPKESr6-oNajHZqtz-kkQKiFgaNSctG92hkqClVir-Vf2rTCWlJAfIqv2nQHQhhud5BJdPdVBYG9U0_r6uB3rYbGnnPZvKE8EoVr3LrqYDDqRDcV-qBxpZQ6UFJMXu266fVjdNZUfRL-xyFk8E2Gs3xBOAeOJAomCuTIQUURQaVZ74SGL-PAWQVVxhH0Oms9O5R5RX-e8GYxGwBtzbBFP4WadkZYW2T" />
-                        </div>
-                        <div>
-                            <span class="font-label-caps text-label-caps text-secondary-fixed">KEPALA SEKOLAH</span>
-                            <h3 class="font-h3 text-h3 text-on-primary">Dudi Budi Astoko, S.Pd.I., M.Pd.</h3>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         <!-- Rules & Regulations (Accordion) -->

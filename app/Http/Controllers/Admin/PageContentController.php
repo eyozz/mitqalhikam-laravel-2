@@ -10,6 +10,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class PageContentController extends Controller
@@ -28,7 +30,7 @@ class PageContentController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        PageContent::create($this->validatedData($request));
+        PageContent::create($this->contentData($request));
         Cache::flush();
 
         return redirect()->route('admin.page-contents.index')->with('status', 'Konten halaman berhasil dibuat.');
@@ -41,7 +43,13 @@ class PageContentController extends Controller
 
     public function update(Request $request, PageContent $pageContent): RedirectResponse
     {
-        $pageContent->update($this->validatedData($request, $pageContent));
+        $data = $this->contentData($request, $pageContent);
+
+        if ($request->hasFile('image_file')) {
+            $this->deleteStoredFile($pageContent->value);
+        }
+
+        $pageContent->update($data);
         Cache::flush();
 
         return redirect()->route('admin.page-contents.index')->with('status', 'Konten halaman berhasil diperbarui.');
@@ -49,10 +57,23 @@ class PageContentController extends Controller
 
     public function destroy(PageContent $pageContent): RedirectResponse
     {
+        $this->deleteStoredFile($pageContent->value);
         $pageContent->delete();
         Cache::flush();
 
         return back()->with('status', 'Konten halaman berhasil dihapus.');
+    }
+
+    private function contentData(Request $request, ?PageContent $content = null): array
+    {
+        $data = $this->validatedData($request, $content);
+
+        if ($request->hasFile('image_file')) {
+            $data['value'] = '/storage/'.$request->file('image_file')->store('page-contents', 'public');
+            $data['type'] = 'image';
+        }
+
+        return $data;
     }
 
     private function validatedData(Request $request, ?PageContent $content = null): array
@@ -70,6 +91,14 @@ class PageContentController extends Controller
             ],
             'value' => ['nullable', 'string'],
             'type' => ['required', 'string', 'max:40'],
+            'image_file' => ['nullable', 'image', 'max:4096'],
         ]);
+    }
+
+    private function deleteStoredFile(?string $path): void
+    {
+        if ($path && str_starts_with($path, '/storage/page-contents/')) {
+            Storage::disk('public')->delete(Str::after($path, '/storage/'));
+        }
     }
 }

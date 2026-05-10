@@ -7,9 +7,12 @@ namespace Tests\Feature;
 use App\Models\FooterLink;
 use App\Models\Gallery;
 use App\Models\NewsPost;
+use App\Models\PageContent;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
@@ -90,5 +93,28 @@ class AdminDashboardTest extends TestCase
             'key' => 'site_name',
             'value' => 'MITQ Al-Hikam Surakarta',
         ]);
+    }
+
+    public function test_admin_can_upload_page_content_image(): void
+    {
+        Storage::fake('public');
+        $admin = User::factory()->create(['is_admin' => true]);
+
+        $this->actingAs($admin)->post(route('admin.page-contents.store'), [
+            'page' => 'about',
+            'section' => 'leadership',
+            'field' => 'test_photo',
+            'value' => '',
+            'type' => 'image',
+            'image_file' => UploadedFile::fake()->image('pembina.jpg'),
+        ])->assertRedirect(route('admin.page-contents.index'));
+
+        $content = PageContent::where('page', 'about')
+            ->where('section', 'leadership')
+            ->where('field', 'test_photo')
+            ->firstOrFail();
+
+        $this->assertStringStartsWith('/storage/page-contents/', $content->value);
+        Storage::disk('public')->assertExists(str_replace('/storage/', '', $content->value));
     }
 }

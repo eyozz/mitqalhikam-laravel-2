@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use App\Models\ContactMessage;
 use App\Models\NewsPost;
+use App\Models\PageContent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -47,5 +48,16 @@ class CompanyProfileTest extends TestCase
             'email' => 'wali@example.com',
             'subject' => 'Informasi Pendaftaran (PPDB)',
         ]);
+    }
+
+    public function test_about_page_uses_dynamic_leadership_content(): void
+    {
+        PageContent::setValue('about', 'leadership', 'pembina_name', 'Nama Pembina Dinamis');
+        PageContent::setValue('about', 'leadership', 'pembina_photo', '/storage/page-contents/pembina.jpg', 'image');
+
+        $this->get(route('about'))
+            ->assertOk()
+            ->assertSee('Nama Pembina Dinamis')
+            ->assertSee('/storage/page-contents/pembina.jpg');
     }
 }
