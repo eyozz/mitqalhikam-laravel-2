@@ -1,6 +1,6 @@
 # Railway Deployment Notes
 
-Project ini disiapkan untuk deploy Laravel 12 ke Railway dengan `railway.toml`.
+Project ini disiapkan untuk deploy Laravel 12 ke Railway dengan `railway.toml`. Railpack otomatis menjalankan install dependency PHP/Node; custom build command hanya menjalankan asset build frontend.
 
 ## Railway Services
 
