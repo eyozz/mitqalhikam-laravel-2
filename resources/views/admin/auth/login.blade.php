@@ -26,7 +26,6 @@
             <input type="password" name="password" required class="mt-2 w-full rounded-xl border-slate-200 focus:border-primary focus:ring-primary">
             <label class="mt-5 flex items-center gap-2 text-sm text-slate-600"><input type="checkbox" name="remember" class="rounded border-slate-300 text-primary focus:ring-primary"> Ingat saya</label>
             <button class="mt-6 w-full rounded-xl bg-primary px-5 py-3 font-bold text-white shadow-lg shadow-emerald-900/20 transition hover:bg-emerald-800">Masuk Dashboard</button>
-            <p class="mt-6 text-center text-xs text-slate-500">Default: admin@mitqalhikam.test / password</p>
         </form>
     </main>
 </body>
