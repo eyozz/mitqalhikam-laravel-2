@@ -271,33 +271,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Management Team Placeholder -->
-            <div class="mt-lg grid grid-cols-2 md:grid-cols-4 gap-sm">
-                <div class="text-center p-sm border border-outline-variant/30 rounded-lg bg-surface-container-lowest">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-xs">
-                        <span class="material-symbols-outlined text-primary">groups</span>
-                    </div>
-                    <p class="font-label-caps text-label-caps text-primary">Kurikulum</p>
-                </div>
-                <div class="text-center p-sm border border-outline-variant/30 rounded-lg bg-surface-container-lowest">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-xs">
-                        <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-                    </div>
-                    <p class="font-label-caps text-label-caps text-primary">Bendahara</p>
-                </div>
-                <div class="text-center p-sm border border-outline-variant/30 rounded-lg bg-surface-container-lowest">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-xs">
-                        <span class="material-symbols-outlined text-primary">person_check</span>
-                    </div>
-                    <p class="font-label-caps text-label-caps text-primary">Kesiswaan</p>
-                </div>
-                <div class="text-center p-sm border border-outline-variant/30 rounded-lg bg-surface-container-lowest">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-xs">
-                        <span class="material-symbols-outlined text-primary">hub</span>
-                    </div>
-                    <p class="font-label-caps text-label-caps text-primary">Humas</p>
-                </div>
-            </div>
         </section>
         <!-- Rules & Regulations (Accordion) -->
         <section class="py-xl bg-surface-container-low px-gutter">
