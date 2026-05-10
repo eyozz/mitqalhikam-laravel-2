@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    @include('partials.favicon')
     <title>News - MITQ Al Hikam Surakarta</title>
     <meta name="description" content="Berita, kegiatan, dan dokumentasi terbaru MITQ Al-Hikam Surakarta." />
     <meta property="og:title" content="News - MITQ Al Hikam Surakarta" />

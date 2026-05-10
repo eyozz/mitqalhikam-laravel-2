@@ -117,4 +117,18 @@ class AdminDashboardTest extends TestCase
         $this->assertStringStartsWith('/storage/page-contents/', $content->value);
         Storage::disk('public')->assertExists(str_replace('/storage/', '', $content->value));
     }
+
+    public function test_admin_can_filter_about_leadership_page_contents(): void
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+        PageContent::setValue('about', 'leadership', 'pembina_name', 'Sigit Basuki');
+        PageContent::setValue('about', 'leadership', 'pembina_photo', '/images/logo.jpg', 'image');
+
+        $this->actingAs($admin)
+            ->get(route('admin.page-contents.index', ['page' => 'about', 'section' => 'leadership']))
+            ->assertOk()
+            ->assertSee('Leadership About')
+            ->assertSee('pembina_name')
+            ->assertSee('pembina_photo');
+    }
 }

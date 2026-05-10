@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    @include('partials.favicon')
     <title>{{ $post->title }} - MITQ Al Hikam</title>
     <meta name="description" content="{{ $post->excerpt }}" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>

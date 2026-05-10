@@ -18,8 +18,29 @@ class PageContentController extends Controller
 {
     public function index(): View
     {
+        $query = PageContent::query()
+            ->orderBy('page')
+            ->orderBy('section')
+            ->orderBy('field');
+
+        if (request()->filled('page')) {
+            $query->where('page', request('page'));
+        }
+
+        if (request()->filled('section')) {
+            $query->where('section', request('section'));
+        }
+
+        if (request()->filled('search')) {
+            $search = request('search');
+            $query->where(function ($query) use ($search): void {
+                $query->where('field', 'like', "%{$search}%")
+                    ->orWhere('value', 'like', "%{$search}%");
+            });
+        }
+
         return view('admin.page-contents.index', [
-            'contents' => PageContent::orderBy('page')->orderBy('section')->orderBy('field')->paginate(20),
+            'contents' => $query->paginate(20)->withQueryString(),
         ]);
     }
 
