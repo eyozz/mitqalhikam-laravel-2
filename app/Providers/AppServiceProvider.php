@@ -9,6 +9,7 @@ use App\Models\Gallery;
 use App\Models\PageContent;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if ($this->app->isProduction() && str_starts_with((string) config('app.url'), 'https://')) {
+            URL::forceRootUrl((string) config('app.url'));
+            URL::forceScheme('https');
+        }
+
         View::composer('*', function ($view): void {
             $settings = [];
             $contents = collect();
