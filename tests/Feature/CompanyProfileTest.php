@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\ContactMessage;
+use App\Models\FooterLink;
 use App\Models\NewsPost;
 use App\Models\PageContent;
+use App\Models\SiteSetting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -59,5 +61,23 @@ class CompanyProfileTest extends TestCase
             ->assertOk()
             ->assertSee('Nama Pembina Dinamis')
             ->assertSee('/storage/page-contents/pembina.jpg');
+    }
+
+    public function test_footer_uses_logo_and_editable_social_links(): void
+    {
+        SiteSetting::setValue('site_logo', '/images/logo.jpg', 'identity', 'image');
+        FooterLink::create(['label' => 'Instagram', 'url' => 'https://instagram.test', 'group' => 'social', 'icon' => 'instagram', 'sort_order' => 1, 'is_active' => true]);
+        FooterLink::create(['label' => 'Facebook', 'url' => 'https://facebook.test', 'group' => 'social', 'icon' => 'facebook', 'sort_order' => 2, 'is_active' => true]);
+        FooterLink::create(['label' => 'TikTok', 'url' => 'https://tiktok.test', 'group' => 'social', 'icon' => 'tiktok', 'sort_order' => 3, 'is_active' => true]);
+        FooterLink::create(['label' => 'YouTube', 'url' => 'https://youtube.test', 'group' => 'social', 'icon' => 'youtube', 'sort_order' => 4, 'is_active' => true]);
+
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('/images/logo.jpg')
+            ->assertSee('https://instagram.test')
+            ->assertSee('https://facebook.test')
+            ->assertSee('https://tiktok.test')
+            ->assertSee('https://youtube.test')
+            ->assertDontSee('mitqalhikam.satemp.top');
     }
 }

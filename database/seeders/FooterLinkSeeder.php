@@ -19,7 +19,8 @@ class FooterLinkSeeder extends Seeder
             ['Hubungi Kami', '/hubungi-kami', 'quick_links', null, 5],
             ['Instagram', '#', 'social', 'instagram', 1],
             ['Facebook', '#', 'social', 'facebook', 2],
-            ['YouTube', '#', 'social', 'youtube', 3],
+            ['TikTok', '#', 'social', 'tiktok', 3],
+            ['YouTube', '#', 'social', 'youtube', 4],
         ];
 
         foreach ($links as [$label, $url, $group, $icon, $sortOrder]) {
