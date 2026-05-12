@@ -81,6 +81,18 @@ class CompanyProfileTest extends TestCase
             ->assertDontSee('mitqalhikam.satemp.top');
     }
 
+    public function test_program_page_has_clickable_weekly_activity_tab(): void
+    {
+        $this->get(route('program'))
+            ->assertOk()
+            ->assertSee('data-program-tab="weekly"', false)
+            ->assertSee('data-program-panel="weekly"', false)
+            ->assertSee('Tapak Siaga')
+            ->assertSee('Memanah')
+            ->assertSee('Pramuka Sako')
+            ->assertSee('Kaligrafi');
+    }
+
     public function test_public_pages_use_responsive_image_markup(): void
     {
         NewsPost::factory()->create([

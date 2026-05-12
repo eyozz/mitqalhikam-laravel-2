@@ -353,20 +353,28 @@
                 </div>
         </section>
         <!-- Materi & Amaliyah (Academic Timeline Logic) -->
-        <section class="py-xl px-gutter bg-surface-container-low">
+        <section class="py-xl px-gutter bg-surface-container-low" data-program-tabs>
                 <div class="max-w-container-max mx-auto">
                         <div class="text-center mb-xl">
                                 <h2 class="font-h2 text-h2 text-primary">Materi &amp; Amaliyah</h2>
                                 <div class="flex justify-center mt-md">
-                                        <div class="bg-surface-container-high p-1 rounded-full flex gap-xs">
+                                        <div class="bg-surface-container-high p-1 rounded-full flex gap-xs" role="tablist" aria-label="Kategori materi dan amaliyah">
                                                 <button
-                                                        class="px-md py-2 bg-primary text-on-primary rounded-full font-label-caps text-[10px]">DAILIES</button>
+                                                        type="button"
+                                                        class="px-md py-2 bg-primary text-on-primary rounded-full font-label-caps text-[10px] transition-colors"
+                                                        data-program-tab="dailies"
+                                                        role="tab"
+                                                        aria-selected="true">DAILIES</button>
                                                 <button
-                                                        class="px-md py-2 text-on-surface-variant hover:text-primary rounded-full font-label-caps text-[10px]">WEEKLY</button>
+                                                        type="button"
+                                                        class="px-md py-2 text-on-surface-variant hover:text-primary rounded-full font-label-caps text-[10px] transition-colors"
+                                                        data-program-tab="weekly"
+                                                        role="tab"
+                                                        aria-selected="false">WEEKLY</button>
                                         </div>
                                 </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md" data-program-panel="dailies">
                                 <!-- Hadits & Doa -->
                                 <div
                                         class="bg-white p-md rounded-xl border border-outline-variant/30 flex flex-col gap-md">
@@ -430,8 +438,58 @@
                                                 <li class="flex gap-sm items-start"><span
                                                                 class="material-symbols-outlined text-primary-container text-sm"
                                                                 data-icon="check_circle">check_circle</span> Praktik
-                                                        Ibadah Shalat</li>
+                                                Ibadah Shalat</li>
                                         </ul>
+                                </div>
+                        </div>
+                        <div class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md" data-program-panel="weekly">
+                                <!-- Tapak Siaga -->
+                                <div
+                                        class="bg-white p-md rounded-xl border border-outline-variant/30 flex flex-col gap-md">
+                                        <div class="flex items-center gap-md">
+                                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                                        <span class="material-symbols-outlined text-primary"
+                                                                data-icon="sports_martial_arts">sports_martial_arts</span>
+                                                </div>
+                                                <h4 class="font-h3 text-[22px] text-primary">Tapak Siaga</h4>
+                                        </div>
+                                        <p class="text-on-surface-variant text-body-md">Latihan kedisiplinan, ketangkasan, keberanian, dan adab dalam aktivitas bela diri yang aman untuk santri.</p>
+                                </div>
+                                <!-- Memanah -->
+                                <div
+                                        class="bg-white p-md rounded-xl border border-outline-variant/30 flex flex-col gap-md">
+                                        <div class="flex items-center gap-md">
+                                                <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
+                                                        <span class="material-symbols-outlined text-secondary"
+                                                                data-icon="ads_click">ads_click</span>
+                                                </div>
+                                                <h4 class="font-h3 text-[22px] text-primary">Memanah</h4>
+                                        </div>
+                                        <p class="text-on-surface-variant text-body-md">Pembinaan fokus, konsentrasi, kontrol diri, dan sportivitas melalui kegiatan memanah berkala.</p>
+                                </div>
+                                <!-- Pramuka Sako -->
+                                <div
+                                        class="bg-white p-md rounded-xl border border-outline-variant/30 flex flex-col gap-md">
+                                        <div class="flex items-center gap-md">
+                                                <div class="w-12 h-12 bg-primary-container/10 rounded-full flex items-center justify-center">
+                                                        <span class="material-symbols-outlined text-primary-container"
+                                                                data-icon="nature_people">nature_people</span>
+                                                </div>
+                                                <h4 class="font-h3 text-[22px] text-primary">Pramuka Sako</h4>
+                                        </div>
+                                        <p class="text-on-surface-variant text-body-md">Kegiatan kepanduan untuk membangun kemandirian, kerja sama, kepemimpinan, dan kepedulian lingkungan.</p>
+                                </div>
+                                <!-- Kaligrafi -->
+                                <div
+                                        class="bg-white p-md rounded-xl border border-outline-variant/30 flex flex-col gap-md">
+                                        <div class="flex items-center gap-md">
+                                                <div class="w-12 h-12 bg-tertiary-container/10 rounded-full flex items-center justify-center">
+                                                        <span class="material-symbols-outlined text-tertiary-container"
+                                                                data-icon="draw">draw</span>
+                                                </div>
+                                                <h4 class="font-h3 text-[22px] text-primary">Kaligrafi</h4>
+                                        </div>
+                                        <p class="text-on-surface-variant text-body-md">Pengembangan minat seni Islami, ketelitian, kesabaran, dan kecintaan terhadap keindahan tulisan Arab.</p>
                                 </div>
                         </div>
                 </div>
@@ -528,6 +586,35 @@
         </section>
     @include('partials.site-footer')
 <a href="{{ $cmsSettings['registration_url'] ?? config('services.ppdb_url', '#') }}" target="_blank" rel="noopener" class="floating-ppdb fixed z-50 rounded-full bg-gradient-to-r from-primary to-primary-container px-md py-sm text-sm font-bold uppercase tracking-[0.08em] text-on-primary shadow-2xl hover:scale-105 transition-transform">Daftar PPDB</a>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[data-program-tabs]').forEach((tabs) => {
+                        const buttons = tabs.querySelectorAll('[data-program-tab]');
+                        const panels = tabs.querySelectorAll('[data-program-panel]');
+
+                        buttons.forEach((button) => {
+                                button.addEventListener('click', () => {
+                                        const activeTab = button.dataset.programTab;
+
+                                        buttons.forEach((tabButton) => {
+                                                const isActive = tabButton.dataset.programTab === activeTab;
+                                                tabButton.classList.toggle('bg-primary', isActive);
+                                                tabButton.classList.toggle('text-on-primary', isActive);
+                                                tabButton.classList.toggle('text-on-surface-variant', !isActive);
+                                                tabButton.classList.toggle('hover:text-primary', !isActive);
+                                                tabButton.setAttribute('aria-selected', String(isActive));
+                                        });
+
+                                        panels.forEach((panel) => {
+                                                const isActive = panel.dataset.programPanel === activeTab;
+                                                panel.classList.toggle('hidden', !isActive);
+                                                panel.classList.toggle('grid', isActive);
+                                        });
+                                });
+                        });
+                });
+        });
+</script>
 </body>
 
 </html>
