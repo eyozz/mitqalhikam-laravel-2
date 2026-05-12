@@ -3,7 +3,7 @@
 @section('content')
     <form method="POST" enctype="multipart/form-data" action="{{ $gallery->exists ? route('admin.galleries.update', $gallery) : route('admin.galleries.store') }}" class="max-w-3xl rounded-3xl bg-white p-6 shadow-sm">
         @csrf @if ($gallery->exists) @method('PUT') @endif
-        @if ($gallery->image_path)<img src="{{ $gallery->image_path }}" class="mb-5 h-64 w-full rounded-2xl object-cover">@endif
+        @if ($gallery->image_path)<x-responsive-image src="{{ $gallery->image_path }}" alt="{{ $gallery->title }}" class="mb-5 h-64 w-full rounded-2xl object-cover" width="768" height="256" sizes="768px" />@endif
         <label class="font-bold">Judul</label><input name="title" value="{{ old('title', $gallery->title) }}" required class="mt-2 w-full rounded-xl border-slate-200">
         <label class="mt-5 block font-bold">Deskripsi</label><textarea name="description" rows="3" class="mt-2 w-full rounded-xl border-slate-200">{{ old('description', $gallery->description) }}</textarea>
         <div class="mt-5 grid gap-5 md:grid-cols-2"><div><label class="font-bold">Section</label><input name="section" value="{{ old('section', $gallery->section ?: 'home') }}" required class="mt-2 w-full rounded-xl border-slate-200"></div><div><label class="font-bold">Urutan</label><input type="number" name="sort_order" value="{{ old('sort_order', $gallery->sort_order ?: 0) }}" required min="0" class="mt-2 w-full rounded-xl border-slate-200"></div></div>

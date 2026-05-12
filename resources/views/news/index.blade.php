@@ -19,7 +19,7 @@
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
     <header class="fixed top-0 w-full flex justify-between items-center px-gutter py-4 bg-surface/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
-        <a href="{{ route('home') }}" class="flex items-center gap-sm"><img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full"><span class="font-semibold text-primary">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}</span></a>
+        <a href="{{ route('home') }}" class="flex items-center gap-sm"><x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" width="48" height="48" sizes="48px" loading="eager" /><span class="font-semibold text-primary">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}</span></a>
         <nav class="hidden md:flex items-center space-x-md text-xs font-semibold tracking-[0.1em] uppercase">
             <a class="text-on-surface-variant hover:text-primary" href="{{ route('home') }}">Beranda</a>
             <a class="text-on-surface-variant hover:text-primary" href="{{ route('about') }}">Tentang Kami</a>
@@ -45,7 +45,7 @@
                 </div>
                 @if ($featuredPost)
                     <a href="{{ route('news.show', $featuredPost) }}" class="group block overflow-hidden rounded-2xl border border-outline-variant bg-white shadow-xl">
-                        <img src="{{ $featuredPost->display_image }}" alt="{{ $featuredPost->title }}" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105">
+                        <x-responsive-image src="{{ $featuredPost->display_image }}" alt="{{ $featuredPost->title }}" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" width="640" height="288" sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" />
                         <div class="p-md">
                             <p class="text-xs font-bold uppercase tracking-[0.1em] text-secondary">Featured / {{ $featuredPost->category }}</p>
                             <h2 class="mt-sm font-h2 text-3xl text-primary">{{ $featuredPost->title }}</h2>
@@ -73,7 +73,7 @@
             <div class="max-w-container-max mx-auto grid gap-md md:grid-cols-2 lg:grid-cols-3">
                 @forelse ($posts as $post)
                     <article class="group flex flex-col overflow-hidden rounded-2xl border border-outline-variant/60 bg-surface-container-lowest shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                        <img src="{{ $post->display_image }}" alt="{{ $post->title }}" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+                        <x-responsive-image src="{{ $post->display_image }}" alt="{{ $post->title }}" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" width="420" height="224" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
                         <div class="flex flex-1 flex-col p-md">
                             <div class="flex items-center justify-between text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant">
                                 <span>{{ $post->published_at?->translatedFormat('d F Y') }}</span>
@@ -104,7 +104,7 @@
                     <div class="grid gap-md md:grid-cols-3">
                         @foreach ($homeGalleries as $gallery)
                             <article class="group overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
-                                <img src="{{ $gallery->image_path }}" alt="{{ $gallery->title }}" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+                                <x-responsive-image src="{{ $gallery->image_path }}" alt="{{ $gallery->title }}" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" width="420" height="224" sizes="(min-width: 768px) 33vw, 100vw" />
                                 <div class="p-md">
                                     <h3 class="font-h3 text-2xl text-primary">{{ $gallery->title }}</h3>
                                     <p class="mt-xs line-clamp-2 text-on-surface-variant">{{ $gallery->description }}</p>

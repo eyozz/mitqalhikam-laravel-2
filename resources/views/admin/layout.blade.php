@@ -13,7 +13,7 @@
     <div class="min-h-screen lg:flex">
         <aside class="bg-primary text-white lg:fixed lg:inset-y-0 lg:w-72">
             <div class="flex items-center gap-3 px-6 py-6">
-                <img src="{{ asset('images/logo.jpg') }}" alt="MITQ Al-Hikam" class="h-12 w-12 rounded-full object-cover bg-white">
+                <x-responsive-image src="{{ asset('images/logo.jpg') }}" alt="MITQ Al-Hikam" class="h-12 w-12 rounded-full object-cover bg-white" width="48" height="48" sizes="48px" loading="eager" />
                 <div>
                     <p class="text-xs uppercase tracking-[0.2em] text-emerald-100">Admin CMS</p>
                     <h1 class="font-bold">MITQ Al-Hikam</h1>

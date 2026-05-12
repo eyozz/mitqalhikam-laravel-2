@@ -121,8 +121,7 @@
         <nav
                 class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
                 <a href="{{ route('home') }}" class="flex items-center gap-sm">
-                        <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam"
-                                class="w-12 h-12 object-cover rounded-full" />
+                        <x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" width="48" height="48" sizes="48px" loading="eager" />
                         <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
                         </div>
@@ -176,10 +175,7 @@
                                 <div
                                         class="absolute inset-0 bg-primary/10 rounded-2xl rotate-3 scale-105 group-hover:rotate-0 transition-transform duration-500">
                                 </div>
-                                <img alt="Students studying"
-                                        class="relative z-10 rounded-2xl w-full h-[400px] object-cover ambient-shadow border border-outline-variant/30"
-                                        data-alt="A serene scene of young students in traditional Islamic attire sitting on a clean, light-filled classroom floor, focused on reading the Holy Quran from elegant wooden stands. The background shows large arched windows with soft daylight streaming in, highlighting the professional institutional atmosphere. The color palette features soft emerald and warm ivory tones, reflecting a peaceful scholarship environment."
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCQNj_uNnnlbiWafoFY8vvldz9rihoQunAOXnK3LECWGfLZX4oDFj6OeZwZiM2rQtu73lvxZh-PPl-4FNVn4xnoSScK23tpgCLWgHiex9e4WAB0qf25mzZ59ZgwACexeYaWXN_Ayx7KT9EK9ou7VdmS1eejOkptKsg7sgfZFfBNcQPOAmZXF3GOL5STGn6o3E7opfiQciQjH9-Hj2j0DVEYeFVW2GcetYwqH7HeJJQ4F_5TMod0TVu28bP4iMT3qXM2hzfFckOwdEk" />
+                                <x-responsive-image src="/images/source/program-hero.jpg" alt="Students studying" class="relative z-10 rounded-2xl w-full h-[400px] object-cover ambient-shadow border border-outline-variant/30" width="600" height="400" sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" />
                         </div>
                 </div>
         </header>
@@ -250,10 +246,7 @@
                                 <div
                                         class="flex bg-white rounded-xl overflow-hidden ambient-shadow border border-outline-variant/30 group">
                                         <div class="w-1/3 bg-primary-container relative overflow-hidden">
-                                                <img alt="Quran detail"
-                                                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                                        data-alt="A detailed close-up of an open Quran with intricate golden calligraphy on high-quality paper, resting on a velvet stand. Soft emerald light highlights the textures of the pages. The setting is a quiet, scholarly library with shelves of leather-bound books in the blurred background. The image conveys a mood of deep sanctity and academic excellence in an Islamic institutional style."
-                                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUq09oJfqzsItwV5g3CpDt_kebJ4YHEdeSEwNI86Tz19YWJi4H-xoNYjJsLOk0BvV8z-2_XR0hY9oqlOL4RqtNRxdT6t6ejdbpM7bnw7ne_F3_RbtWkytjRzeT2L00Mw8tInRulIFajNGZGX0MVsOf0QO0ienby1OHg_KUkTPYEoY5Dc233yWWqbXWrhSEC6CPxNCSlqITL0d3c0Wmlyeb_lJ851j9sUufYeYk0Pt3lTOCLHSw-mM0bD_ivIggUpCaPg2Ky0UYH4pS" />
+                                                <x-responsive-image src="/images/source/program-quran.jpg" alt="Quran detail" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" width="220" height="220" sizes="(min-width: 1024px) 20vw, 33vw" />
                                         </div>
                                         <div class="w-2/3 p-md flex flex-col justify-center">
                                                 <h4 class="font-h3 text-h3 text-primary mb-xs">Hifzhul Qur’an 5-10 Juz
@@ -273,10 +266,7 @@
                                 <div
                                         class="flex bg-white rounded-xl overflow-hidden ambient-shadow border border-outline-variant/30 group">
                                         <div class="w-1/3 bg-secondary-container relative overflow-hidden">
-                                                <img alt="Collaborative learning"
-                                                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                                        data-alt="Two diverse young scholars engaged in a serious discussion over a map and ancient texts in a bright, modern learning hub. The room is filled with soft, natural light, emphasizing a high-key professional aesthetic. Minimalist furniture and emerald accents are visible. The mood is collaborative and focused on scholarship and intellectual growth."
-                                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFoMle_74y_3lNPyxbYgMRIn8EscRhFTvf73RvlR8JZES9I4UEJuDUpzl-Byt-qUV15FaxRwBKnjfC_dq5p-iGdfXEyb6rZjH7dYp9cXJm1eVlXHaftkzkebDNDwJTKJ5aLKzuwH5-jKpww6QDa1NWSXCgENY4DALu1x1QAyTu9zl6_aGJOxd36lSBqlnujxPP3D9RzygLQSBztehVv2hfrtwMLQfsagOe8CDcTMY047oMDxaRqF9Y5K3H5B1ykHT7V1l963xjsVPf" />
+                                                <x-responsive-image src="/images/source/program-collab.jpg" alt="Collaborative learning" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" width="220" height="220" sizes="(min-width: 1024px) 20vw, 33vw" />
                                         </div>
                                         <div class="w-2/3 p-md flex flex-col justify-center">
                                                 <h4 class="font-h3 text-h3 text-primary mb-xs">Program MAHIR</h4>
@@ -295,10 +285,7 @@
                                 <div
                                         class="lg:col-span-2 flex bg-white rounded-xl overflow-hidden ambient-shadow border border-outline-variant/30 group">
                                         <div class="w-1/4 bg-tertiary-container relative overflow-hidden">
-                                                <img alt="Teaching Arabic"
-                                                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                                        data-alt="A close-up of a teacher's hand pointing to Arabic script on a blackboard in a modern, clean classroom. The lighting is warm and encouraging. The environment is orderly and academic, featuring emerald green boards and light wood furniture. The focus is on precision and the beauty of Arabic calligraphy and phonetics in an educational setting."
-                                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd6an2QcVnM8NQvs1Ge4AUwyAdx8h1_q5gq9hnSn0rw4oxz7W9NxFttlbmCRvvKWO0Mw1NeWg8DRyrUYv9-2zgLtVRjS5UstbFzKINur23NEwWYZK6qr_tRHJSuWgUitGfSn6VW26oBH80FafwsqMz72Hx2OGxrAxBsnUSQsA42tkWfkBj_idK5_QbT1AWsWkAImD-RNBWCsg0m2LSImIUYQTESxliDAm4DFO35EDadydXL5kkWIp8llu2O9upnpBR8UiYyRB8FiAT" />
+                                                <x-responsive-image src="/images/source/program-arabic.jpg" alt="Teaching Arabic" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" width="220" height="220" sizes="(min-width: 1024px) 20vw, 25vw" />
                                         </div>
                                         <div class="w-3/4 p-md flex flex-col justify-center">
                                                 <h4 class="font-h3 text-h3 text-primary mb-xs">Tahsin &amp; Tajwid

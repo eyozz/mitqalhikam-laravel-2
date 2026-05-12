@@ -12,7 +12,7 @@
         @if ($content->type === 'image' && $content->value)
             <div class="mt-4">
                 <p class="mb-2 text-sm font-bold text-slate-600">Preview saat ini</p>
-                <img src="{{ $content->value }}" alt="Preview {{ $content->field }}" class="h-32 w-32 rounded-2xl border border-slate-200 object-cover">
+                <x-responsive-image src="{{ $content->value }}" alt="Preview {{ $content->field }}" class="h-32 w-32 rounded-2xl border border-slate-200 object-cover" width="128" height="128" sizes="128px" />
             </div>
         @endif
         <button class="mt-6 rounded-xl bg-primary px-5 py-3 font-bold text-white">Simpan Konten</button>

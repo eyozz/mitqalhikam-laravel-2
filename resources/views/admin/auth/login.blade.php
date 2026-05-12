@@ -14,7 +14,7 @@
         <form method="POST" action="{{ route('admin.login.store') }}" class="w-full max-w-md rounded-3xl border border-white/70 bg-white/85 p-8 shadow-2xl backdrop-blur">
             @csrf
             <div class="mb-8 text-center">
-                <img src="{{ asset('images/logo.jpg') }}" alt="MITQ Al-Hikam" class="mx-auto h-20 w-20 rounded-full object-cover shadow">
+                <x-responsive-image src="{{ asset('images/logo.jpg') }}" alt="MITQ Al-Hikam" class="mx-auto h-20 w-20 rounded-full object-cover shadow" width="80" height="80" sizes="80px" loading="eager" />
                 <p class="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-gold">Admin CMS</p>
                 <h1 class="mt-2 text-3xl font-extrabold text-primary">MITQ Al-Hikam</h1>
             </div>

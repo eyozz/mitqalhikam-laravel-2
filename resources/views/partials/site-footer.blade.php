@@ -2,7 +2,7 @@
     <div class="mx-auto grid max-w-[1200px] grid-cols-1 gap-8 md:grid-cols-3">
         <div class="flex flex-col gap-3">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}" class="h-14 w-14 rounded-2xl border border-white/70 bg-white object-cover shadow-sm">
+                <x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}" class="h-14 w-14 rounded-2xl border border-white/70 bg-white object-cover shadow-sm" width="56" height="56" sizes="56px" />
                 <div class="font-serif text-3xl font-semibold text-[#004d34]">{{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}</div>
             </a>
             <p class="text-base leading-7 text-[#3f4943]">{{ $cmsSettings['footer_description'] ?? 'Lembaga pendidikan tahfizh dasar yang berfokus pada Al-Quran, adab, dan pembinaan karakter santri.' }}</p>

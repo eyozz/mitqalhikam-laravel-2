@@ -16,7 +16,7 @@
                                 <input name="settings[{{ $setting->key }}]" value="{{ old('settings.'.$setting->key, $setting->value) }}" class="mt-2 w-full rounded-xl border-slate-200">
                             @endif
                             @if ($setting->type === 'image' && $setting->value)
-                                <img src="{{ $setting->value }}" class="mt-3 h-20 w-20 rounded-xl object-cover">
+                                <x-responsive-image src="{{ $setting->value }}" alt="{{ $setting->key }}" class="mt-3 h-20 w-20 rounded-xl object-cover" width="80" height="80" sizes="80px" />
                             @endif
                         </div>
                     @endforeach

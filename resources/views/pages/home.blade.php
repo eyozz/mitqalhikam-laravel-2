@@ -123,7 +123,7 @@
     <header
         class="fixed top-0 w-full flex justify-between items-center px-gutter py-4 bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 dark:border-outline/20 shadow-sm shadow-primary/5">
         <a href="{{ route('home') }}" class="flex items-center gap-sm">
-            <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" />
+            <x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" width="48" height="48" sizes="48px" loading="eager" />
             <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
             </div>
@@ -178,9 +178,7 @@
                 <div class="relative order-1 lg:order-2">
                     <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
                     <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl border border-outline-variant/30">
-                        <img alt="Islamic Education" class="w-full h-[500px] object-cover"
-                            data-alt="A serene wide-angle shot of a bright, sunlit Islamic classroom with a high-end minimalist aesthetic. A small group of young students in clean, modest attire are seated in a circular halaqah formation on soft, emerald green carpets. The lighting is ethereal and warm, filtering through large modern windows with geometric silhouettes. The overall mood is scholarly, focused, and deeply peaceful, reflecting the brand's primary emerald and parchment color palette."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv2TeJ1grRYZiEvuCFnn-hMfhp93frUhhIC8-l94SKZDLxDYkNgS4GOzFqkFz2Xd7WT9kaUbKkImnMBF3h-idz8KzVVT4lZ8l4yaxQw3M4bKjM3200C4MdXRUWhZK43lTiDn4mVftZtKR62gg_G6mUXcGydc0-Jlk2IPko5d1ZK3Kb67k1uhoUnrbz4OmzjQj7poPTXpkyRmT_LDcPRMLJYgo17n_jYYnRAroG7DftqyT6D-JkYXzVozmItjvCaJEA4IQrVOoKvK5W" />
+                        <x-responsive-image src="/images/source/home-hero.jpg" alt="Islamic Education" class="w-full h-[500px] object-cover" width="640" height="500" sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" fetchpriority="high" />
                     </div>
                     <div
                         class="absolute -bottom-6 -left-6 bg-surface-container-lowest p-md rounded-lg shadow-xl border-l-4 border-secondary max-w-[200px]">
@@ -285,9 +283,7 @@
             <div class="max-w-container-max mx-auto px-gutter">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
                     <div class="rounded-xl overflow-hidden shadow-xl border-t-4 border-secondary">
-                        <img alt="Student reading Quran" class="w-full h-[400px] object-cover"
-                            data-alt="A close-up shot of a student's hands gently holding a beautifully crafted Quran with gold calligraphy. The setting is a bright, airy library with warm wooden shelves and emerald green accents. Soft morning sunlight creates a serene, scholarly atmosphere. The focus is on the intricate details of the pages, emphasizing the discipline and sanctity of the learning process in a modern institutional setting."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLXDfc26NuumuI_HzgbtrycIwKk3feKnOLU9f0dbYywWP_B0yzq1EiNaVh_wNMJp8aXxWKhZ6VRf-THMn0o556i8eOr0cGuBdaM9mbKFZ1pn8IsNKGPbtBvnR_RVPohhK0Z4mxfMzfOfhP4PGAioPPuOPUHmz8EwWJ97nDkQ9e2bptbIrqyuNGhDBtE9Z_4Rtl8qVqMulRuZgB5npUuzTKAsGsvbzKzMRS5XpIan1XwwCE31HeNIo_e241BwcvQYZ_Tf37FjW4ZD5A" />
+                        <x-responsive-image src="/images/source/home-quran.jpg" alt="Student reading Quran" class="w-full h-[400px] object-cover" width="600" height="400" sizes="(min-width: 1024px) 50vw, 100vw" />
                     </div>
                     <div>
                         <h2 class="font-h2 text-h2 text-primary mb-lg">Pondasi Nilai &amp; Karakter</h2>

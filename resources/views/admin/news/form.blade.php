@@ -25,7 +25,7 @@
                 <label class="mt-5 flex items-center gap-2 font-bold"><input type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $post->is_featured)) class="rounded text-primary"> Featured</label>
             </div>
             <div class="rounded-3xl bg-white p-6 shadow-sm">
-                @if ($post->display_image)<img src="{{ $post->display_image }}" class="mb-4 h-40 w-full rounded-2xl object-cover">@endif
+                @if ($post->display_image)<x-responsive-image src="{{ $post->display_image }}" alt="{{ $post->title }}" class="mb-4 h-40 w-full rounded-2xl object-cover" width="360" height="160" sizes="360px" />@endif
                 <label class="font-bold">Upload Thumbnail</label>
                 <input type="file" name="thumbnail" accept="image/*" class="mt-2 w-full rounded-xl border border-slate-200 p-2">
                 <label class="mt-5 block font-bold">Atau URL/path gambar</label>

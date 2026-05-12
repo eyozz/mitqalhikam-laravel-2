@@ -40,7 +40,7 @@
                         <td>{{ $content->field }}</td>
                         <td class="max-w-md truncate text-slate-500">
                             @if ($content->type === 'image' && $content->value)
-                                <div class="flex items-center gap-3"><img src="{{ $content->value }}" alt="{{ $content->field }}" class="h-12 w-12 rounded-xl object-cover"><span class="truncate">{{ $content->value }}</span></div>
+                                <div class="flex items-center gap-3"><x-responsive-image src="{{ $content->value }}" alt="{{ $content->field }}" class="h-12 w-12 rounded-xl object-cover" width="48" height="48" sizes="48px" /><span class="truncate">{{ $content->value }}</span></div>
                             @else
                                 {{ $content->value }}
                             @endif

@@ -120,8 +120,7 @@
         <nav
                 class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
                 <a href="{{ route('home') }}" class="flex items-center gap-sm">
-                        <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam"
-                                class="w-12 h-12 object-cover rounded-full" />
+                        <x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" width="48" height="48" sizes="48px" loading="eager" />
                         <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
                         </div>

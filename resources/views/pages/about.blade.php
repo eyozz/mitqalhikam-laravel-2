@@ -125,7 +125,7 @@
     <header
         class="fixed top-0 w-full flex justify-between items-center px-gutter py-4  bg-surface/95 backdrop-blur-sm z-50 border-b border-outline-variant/30 shadow-sm shadow-primary/5">
         <a href="{{ route('home') }}" class="flex items-center gap-sm">
-            <img src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" />
+            <x-responsive-image src="{{ $cmsSettings['site_logo'] ?? asset('images/logo.jpg') }}" alt="Logo MITQ Al-Hikam" class="w-12 h-12 object-cover rounded-full" width="48" height="48" sizes="48px" loading="eager" />
             <div class="font-h4 text-h font-semibold text-primary dark:text-primary-fixed">
                 {{ $cmsSettings['site_name'] ?? 'MITQ Al-Hikam' }}
             </div>
@@ -186,9 +186,7 @@
                         <div
                             class="absolute -inset-4 bg-primary/5 rounded-xl rotate-3 group-hover:rotate-0 transition-transform duration-500">
                         </div>
-                        <img class="rounded-xl shadow-lg relative z-10 w-full h-[450px] object-cover border border-outline-variant/30"
-                            data-alt="A serene and scholarly educational environment featuring traditional Islamic architectural elements combined with modern library facilities. The lighting is soft and golden, suggesting a peaceful afternoon of study. The scene includes neatly arranged books, wooden reading tables, and a large window overlooking a lush green garden, evoking a sense of calm focus and academic excellence."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPyozpTUnbKUOOJ8sWeoReDiAfKaR-r58m2fJjOJi97HjXzUeHpz8j8YoERH1ED4iqQyHnp5Phnfzm-YyNQrKyaMaIhXOz0oc0QMFoK0whNsZ8AWuEyOQHolEGsE2euFcv110jnt8eoApkQ2AXipAU66bWEfln1olgLUUHT6urhksjkc277z5ymulqW8ApCc8LhXyClqroY-jcUsUWWLT-IlYosnFD0h5h8CJO_5MrLV5V_QE3fiUB1PVtWzOxzIS1SOA6rCn_d7Ra" />
+                        <x-responsive-image src="/images/source/about-story.jpg" alt="Lingkungan belajar MITQ Al-Hikam" class="rounded-xl shadow-lg relative z-10 w-full h-[450px] object-cover border border-outline-variant/30" width="600" height="450" sizes="(min-width: 1024px) 50vw, 100vw" />
                     </div>
                 </div>
             </div>
@@ -205,25 +203,25 @@
                     [
                         'role' => 'PEMBINA',
                         'name' => $cmsContent->get('about.leadership.pembina_name', 'Sigit Basuki'),
-                        'photo' => $cmsContent->get('about.leadership.pembina_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCowMwMNuuodAKEpt42mj39-8MYpfpQhD7HHLcH-LuGQQDBRGSM_Rq5D2Pci0GAy4Ux9UA91KTqgjyj6OnMLtduCai3f009ukBfYQjCsY9_xRp27e-vpyi7RlrUSRnH7G4dBC9b8tZ5U3zgkq4JGteYcK0w6-3zBP8zx9osAAmqrz9V7LX83TZGz5bo03pvp-4iYe7JLlj02-sH3G-mGWzQeZdYgAwC9axjZC5hqvNkhZrATs6BfZDHsaZheyi17ESw0bjK6EhvUn2K'),
+                        'photo' => $cmsContent->get('about.leadership.pembina_photo', '/images/logo.jpg'),
                         'alt' => 'Foto Pembina MITQ Al-Hikam',
                     ],
                     [
                         'role' => 'PENGAWAS',
                         'name' => $cmsContent->get('about.leadership.pengawas_name', 'Muzayyin Marzuki'),
-                        'photo' => $cmsContent->get('about.leadership.pengawas_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDdO-UnbachbWq0IzmEhIVQH7B7ddqeteqyfmXRQl7KXZ7Se6SCkRMf6YQrt_dJg3GxLeBaQU0HS8nbkxR0C9e58Vu4M-S8w5yHpcnb9Kofg4dhnLzuf4a4dhiLEBihi98IchtFusUXg4ISZ4FEiOomBHiJG6Jh3TCH4rKTekeNpDSMHpa_3FjgCGScIpyYkPO_52GX5bGThtuGhN4l66dv-aTW0nXW-lFIrEezH2444GyVIu9zSQPvwzZKkGjxs7TeI_zD_TJVroDy'),
+                        'photo' => $cmsContent->get('about.leadership.pengawas_photo', '/images/logo.jpg'),
                         'alt' => 'Foto Pengawas MITQ Al-Hikam',
                     ],
                     [
                         'role' => 'KETUA YAYASAN',
                         'name' => $cmsContent->get('about.leadership.ketua_yayasan_name', 'Anas Ma’ruf'),
-                        'photo' => $cmsContent->get('about.leadership.ketua_yayasan_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDOKEHUqnjCVkqjASu36zkkJGYDBbX4pqM3g2cpqA8sJ9j5beVs3LYg4WnU68D1Qq6IgNtwyc59tC6PXV3ugkCQg1HdMdcTC0v6is-HKEsI6CHazSZQtnXC5eHQlLlxOcQUanvWBTyXjlq-_PHwEKP_mFux0wdnjyP4w6L0ni-RFbinL0nvlQRWqFzNBoX2mI6d_Zky_-zh_9l3PL3xG_5gRtspbqfQ1WCTotkhxveEU1dBNbmeswEsERJW-dfIGr9lOXpgFadUPjxm'),
+                        'photo' => $cmsContent->get('about.leadership.ketua_yayasan_photo', '/images/logo.jpg'),
                         'alt' => 'Foto Ketua Yayasan MITQ Al-Hikam',
                     ],
                     [
                         'role' => 'KEPALA SEKOLAH',
                         'name' => $cmsContent->get('about.leadership.kepala_sekolah_name', 'Dudi Budi Astoko, S.Pd.I., M.Pd.'),
-                        'photo' => $cmsContent->get('about.leadership.kepala_sekolah_photo', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMAzwsTBHihMR8-AxyXCWwS5qW9-yF9uBmK--8_dDFK8FJGDPKESr6-oNajHZqtz-kkQKiFgaNSctG92hkqClVir-Vf2rTCWlJAfIqv2nQHQhhud5BJdPdVBYG9U0_r6uB3rYbGnnPZvKE8EoVr3LrqYDDqRDcV-qBxpZQ6UFJMXu266fVjdNZUfRL-xyFk8E2Gs3xBOAeOJAomCuTIQUURQaVZ74SGL-PAWQVVxhH0Oms9O5R5RX-e8GYxGwBtzbBFP4WadkZYW2T'),
+                        'photo' => $cmsContent->get('about.leadership.kepala_sekolah_photo', '/images/logo.jpg'),
                         'alt' => 'Foto Kepala Sekolah MITQ Al-Hikam',
                         'featured' => true,
                     ],
@@ -235,7 +233,7 @@
                     <div class="md:col-span-2 {{ $leader['featured'] ?? false ? 'bg-primary border-primary shadow-md' : 'bg-white border-outline-variant hover:border-primary shadow-sm' }} p-md rounded-xl border transition-all group">
                         <div class="flex items-center gap-md">
                             <div class="w-24 h-24 rounded-full {{ $leader['featured'] ?? false ? 'bg-white/20 border-white/50' : 'bg-surface-container-highest border-primary/20' }} overflow-hidden border-2">
-                                <img class="w-full h-full object-cover" alt="{{ $leader['alt'] }}" src="{{ $leader['photo'] }}" loading="lazy" />
+                                <x-responsive-image src="{{ $leader['photo'] }}" alt="{{ $leader['alt'] }}" class="w-full h-full object-cover" width="96" height="96" sizes="96px" />
                             </div>
                             <div>
                                 <span class="font-label-caps text-label-caps {{ $leader['featured'] ?? false ? 'text-secondary-fixed' : 'text-secondary' }}">{{ $leader['role'] }}</span>

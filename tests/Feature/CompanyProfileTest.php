@@ -80,4 +80,30 @@ class CompanyProfileTest extends TestCase
             ->assertSee('https://youtube.test')
             ->assertDontSee('mitqalhikam.satemp.top');
     }
+
+    public function test_public_pages_use_responsive_image_markup(): void
+    {
+        NewsPost::factory()->create([
+            'title' => 'Artikel Optimasi Gambar',
+            'slug' => 'artikel-optimasi-gambar',
+            'image_url' => '/images/berita/1.JPG',
+            'thumbnail_path' => '/images/berita/1.JPG',
+            'published_at' => now(),
+            'is_featured' => true,
+        ]);
+
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('<picture>', false)
+            ->assertSee('type="image/avif"', false)
+            ->assertSee('type="image/webp"', false)
+            ->assertSee('fetchpriority="high"', false)
+            ->assertSee('width="640"', false)
+            ->assertSee('height="500"', false);
+
+        $this->get(route('news.index'))
+            ->assertOk()
+            ->assertSee('/images/optimized/', false)
+            ->assertSee('loading="lazy"', false);
+    }
 }
