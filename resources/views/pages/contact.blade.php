@@ -212,7 +212,7 @@
                                         </div>
                                         <!-- Google Maps Embed -->
                                         <div class="relative h-[300px] overflow-hidden rounded-xl border border-outline-variant/50 shadow-sm">
-                                                <iframe class="absolute inset-0 h-full w-full" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Lokasi MITQ Al-Hikam Surakarta" src="https://www.google.com/maps?q=Begalon%20Panularan%20Laweyan%20Surakarta&output=embed"></iframe>
+                                                <iframe class="absolute inset-0 h-full w-full" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Lokasi MITQ Al-Hikam Surakarta" src="https://www.google.com/maps?q=-7.5759848,110.8073705&z=17&output=embed"></iframe>
                                         </div>
                                 </div>
                                 <!-- Contact Form -->
